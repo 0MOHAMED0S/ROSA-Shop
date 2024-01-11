@@ -1,0 +1,146 @@
+:root {
+    --primary-color: #ece4ec;
+    --secondary-color: #ff0076;
+    --thirdary-color: #67696b;
+  }
+  
+
+section {
+    background-color: white;
+}
+
+.shop_now {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    width: 150px;
+    height: 35px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--secondary-color);
+    transition: 0.5s;
+  }
+  
+  .shop_now:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+  
+  }
+
+h1 {
+    color: #ff0076;
+    font-family: math;
+    font-size: xx-large;
+}
+
+center {
+    margin: 10px;
+}
+footer center{
+    margin: 0px;
+}
+center h6 {
+    margin: 0;
+    font-size: 15px;
+}
+
+center h6 a {
+    text-decoration: none;
+}
+
+.ceo {
+    display: inline;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+table tbody tr td img {
+    height: auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+}
+
+.delete-btn {
+    background-color: #ff0076;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.quantity-input {
+    width: 70px;
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+.quantity-btn {
+    background-color: #ff0076;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.main-section{    
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+@media (max-width: 768px) {
+    section div h1 {
+        FONT-SIZE: 25PX;
+    }
+
+    section {
+        margin-top: 18px;
+    }
+
+    th,
+    td {
+        padding: 0;
+    }
+    .quantity-input {
+        text-align: center;
+    }
+    
+    table tbody tr td img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-height: 461px) {
+    .main-section {
+        height: auto;
+        margin: 50px;
+    }
+}

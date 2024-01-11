@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class OrdersDone extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'rosa_id',
+        'quantity',
+        'total_price',
+        'payments',
+        'address',
+        'number',
+        'MoveDate'
+    ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function rosa()
+    {
+        return $this->belongsTo(Rosa::class, 'rosa_id');
+    }
+
+}

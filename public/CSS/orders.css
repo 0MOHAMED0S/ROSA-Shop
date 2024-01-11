@@ -1,0 +1,33 @@
+h3{
+    margin: 0px;
+}
+H4{
+    margin-bottom: 3px;
+    font-size: 15px;
+}
+h5{
+    margin: 5px;
+    font-size: 15px;
+}
+/* .main-section{
+    height: auto;
+} */
+
+
+  #first_table{
+    max-width: 700px;
+    min-height: 200PX;
+    margin: 15px;
+  }
+  #first_table2{
+    max-width: 700px;
+    min-height: 200PX;
+    margin: 15px;
+    background-color: #07c6001a;
+  }
+  .main_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }

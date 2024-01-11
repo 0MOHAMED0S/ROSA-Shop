@@ -24,6 +24,8 @@ new #[Layout('layouts.guest')] class extends Component
             $this->only('email')
         );
 
+        //abod
+
         if ($status != Password::RESET_LINK_SENT) {
             $this->addError('email', __($status));
 

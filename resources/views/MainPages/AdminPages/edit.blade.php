@@ -11,16 +11,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="page-home">
-        
+
                     <form action="{{ route('update', $rose->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT') 
-                
                         <center>
                             <H1> <span>Edit </span> PRODUCT</H1>
                         </center>
-                        
-            
+
+
                         <div class="form-header">
                             <div class="header-product">
                                 <label for="add">Add name product</label>
@@ -54,14 +53,14 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </center>
-                        
+
                         <label for="description">Add description</label>
                         <textarea name="description" id="description" cols="30" rows="10" placeholder="Add description" >{{old('description',$rose->description)}}</textarea>
                         @error('description')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                         <center><button id="submitButton">CREATE</button></center>
-            
+
                     </form>
                 </div>
             </div>

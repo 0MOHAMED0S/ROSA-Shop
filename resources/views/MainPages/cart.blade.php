@@ -15,7 +15,7 @@
                     border: 1px solid red;
                     padding: 8px;
                     border-radius: 10px;" href="{{route('Home')}}">Products</a></div>
-                
+
             </center>
         </div>
 @else
@@ -47,7 +47,6 @@
                         </td>
                         <td class="price">{{ $cart->Rosa->price }} EGP</td>
                         <livewire:quantity :cartId="$cart->id" :key="$cart->id" />
-
                         <td class="total-price"> {{ $cart->total_price }} EGP</td>
                         <td> <a href="{{ route('del_cart', ['id' => $cart->id]) }}"
                                 class="quantity-btn">X</a> </td>
@@ -66,7 +65,7 @@
 </section>
 @endif
 
-        
+
 
     </div>
 

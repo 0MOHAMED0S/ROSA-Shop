@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{asset('CSS/contact_us.css')}}">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Home') }}
+            {{ __('Contact Us') }}
         </h2>
     </x-slot>
 
@@ -40,7 +40,7 @@
                             <textarea name="" id="message" cols="30" rows="10" placeholder="Add message"></textarea>
                             <br>
                             <br>
-            
+
                             <button type="submit">submit</button>
                         </form>
                     </div>

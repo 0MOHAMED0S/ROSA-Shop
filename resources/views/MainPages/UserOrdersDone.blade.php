@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('CSS/cart.css') }}">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Home') }}
+            {{ __('Done Orders') }}
         </h2>
     </x-slot>
 
@@ -55,7 +55,7 @@
                         </tr>
                         <?php $totalPrice += $order->total_price; ?>
                     @endforeach
-                    
+
                 </tbody>
             </table>
             <center  style="color: rgb(0 124 0);
@@ -67,10 +67,10 @@
     <br>
         @endforeach
     @endforeach
-   
+
 @endforeach
 
-        
+
 
             {{-- <div class="main-section">
                 <h4>Order 1 ----- 5/11/2023 <SPan style="color: rgb(0, 255, 0);">DONE</SPan></h4>

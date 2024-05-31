@@ -17,7 +17,6 @@
                             <H1> <span>CREATE </span> PRODUCT</H1>
                         </center>
 
-
                         <div class="form-header">
                             <div class="header-product">
                                 <label for="add">Add name product</label>
@@ -28,7 +27,7 @@
                                 @enderror
                             </div>
 
-                            
+
                             <div class="header-product">
                                 <label for="price">Add price product</label>
                                 <input type="number" name="price" id="price" placeholder="Add price "

@@ -3,5 +3,5 @@
     <br>
     <br>
     <button type="button" class="quantity-btn" wire:click="decrementQuantity" onclick="decrementQuantity(this)" >-</button>
-<button type="button" class="quantity-btn" wire:click="incrementQuantity" onclick="incrementQuantity(this)" >+</button>
+    <button type="button" class="quantity-btn" wire:click="incrementQuantity" onclick="incrementQuantity(this)" >+</button>
 </td>

@@ -22,8 +22,8 @@ class cart extends Model
         {
             return $this->belongsTo(User::class);
         }
-        public function Rosa(): BelongsTo
-        {
-            return $this->belongsTo(rosa::class);
-        }
+            public function Rosa(): BelongsTo
+            {
+                return $this->belongsTo(rosa::class);
+            }
 }

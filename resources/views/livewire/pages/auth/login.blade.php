@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('layouts.guest')] class extends Component
+new #[Layout('layouts.auth')] class extends Component
 {
     public LoginForm $form;
 
@@ -32,7 +32,14 @@ new #[Layout('layouts.guest')] class extends Component
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form wire:submit="login">
+    <form id="f" wire:submit="login">
+        <center>
+            <div>
+                <a href="{{route('about_rosa')}}">
+                    <img width="80" height="80" style="margin-bottom: 50px" src="{{asset('files/main_images/logo2.png')}}" alt="">
+                </a>
+            </div>
+        </center>
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -59,8 +66,9 @@ new #[Layout('layouts.guest')] class extends Component
                 <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
         </div>
-
-        <div class="flex items-center justify-end mt-4">
+<br>
+<br>
+        <div class="block mt-4">
             @if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}" wire:navigate>
                     {{ __('Forgot your password?') }}

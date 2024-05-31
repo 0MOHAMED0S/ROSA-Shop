@@ -51,17 +51,17 @@ class AdminRosa extends Controller
                 'number' => 'required|integer',
                 'user_id'=>'required|integer',
             ]);
-    
+
             // Use the Carbon instance to format the date for comparison
             $formattedDate = \Carbon\Carbon::parse($validatedData['date'])->format('Y-m-d');
-    
+
             // Get orders based on the validated data
             $ordersToMove = Order::where('address', $validatedData['address'])
                 ->where('number', $validatedData['number'])
                 ->where('user_id', $validatedData['user_id'])
                 ->whereDate('created_at', $formattedDate)
                 ->get();
-    
+
             // Store the orders in the 'ordersdone' table
             foreach ($ordersToMove as $order) {
                 OrdersDone::create([
@@ -75,14 +75,14 @@ class AdminRosa extends Controller
                     'payments'=>$order->payments,
                 ]);
             }
-    
+
             // Delete the orders from the original table
             $ordersToDelete = Order::where('address', $validatedData['address'])
                 ->where('number', $validatedData['number'])
                 ->where('user_id', $validatedData['user_id'])
                 ->whereDate('created_at', $formattedDate)
                 ->delete();
-    
+
             // You can return a response or perform additional actions if needed
             return redirect()->route('AllOrders')->with('success', 'Orders moved to ordersdone table and deleted from the original table.');
         } catch (ValidationException $e) {

@@ -20,13 +20,11 @@ class AdminRosa extends Controller
 
     public function AllOrders()
     {
-        // Controller or wherever you retrieve users
         $users = User::with('orders')->get();
         return view('MainPages.AdminPages.AllOrders', compact('users'));
     }
     public function DoneOrders()
     {
-        // Controller or wherever you retrieve users
         $users = User::with('OrdersDone')->get();
         return view('MainPages.AdminPages.DoneOrders', compact('users'));
     }
@@ -47,22 +45,18 @@ class AdminRosa extends Controller
         try {
             $validatedData = $request->validate([
                 'address' => 'required|string',
-                'date' => 'required|date|date_format:Y-m-d', // Adjust the format if needed
+                'date' => 'required|date|date_format:Y-m-d',
                 'number' => 'required|integer',
                 'user_id'=>'required|integer',
             ]);
 
-            // Use the Carbon instance to format the date for comparison
             $formattedDate = \Carbon\Carbon::parse($validatedData['date'])->format('Y-m-d');
-
-            // Get orders based on the validated data
             $ordersToMove = Order::where('address', $validatedData['address'])
                 ->where('number', $validatedData['number'])
                 ->where('user_id', $validatedData['user_id'])
                 ->whereDate('created_at', $formattedDate)
                 ->get();
 
-            // Store the orders in the 'ordersdone' table
             foreach ($ordersToMove as $order) {
                 OrdersDone::create([
                     'address' => $order->address,
@@ -76,23 +70,18 @@ class AdminRosa extends Controller
                 ]);
             }
 
-            // Delete the orders from the original table
             $ordersToDelete = Order::where('address', $validatedData['address'])
                 ->where('number', $validatedData['number'])
                 ->where('user_id', $validatedData['user_id'])
                 ->whereDate('created_at', $formattedDate)
                 ->delete();
 
-            // You can return a response or perform additional actions if needed
             return redirect()->route('AllOrders')->with('success', 'Orders moved to ordersdone table and deleted from the original table.');
         } catch (ValidationException $e) {
-            // Handle validation errors
             return redirect()->route('AllOrders')->with('error',  $e->validator->errors());
         } catch (QueryException $e) {
-            // Handle database query errors
             return redirect()->route('AllOrders')->with('error',  'Database error.');
         } catch (\Exception $e) {
-            // Handle other unexpected errors
             return redirect()->route('AllOrders')->with('error',  'An unexpected error occurred.');
         }
     }

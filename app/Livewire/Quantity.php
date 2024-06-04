@@ -21,7 +21,6 @@ class Quantity extends Component
         $this->cart->increment('quantity');  // Use increment method
         $this->cart->total_price= ($this->cart->Rosa->price) * ($this->cart->quantity);
         $this->cart->save();
-        // $this->emit('cartUpdated', $this->cart->id);
     }
 
     public function decrementQuantity()
@@ -30,7 +29,6 @@ class Quantity extends Component
             $this->cart->decrement('quantity');  // Use decrement method
             $this->cart->total_price= ($this->cart->Rosa->price) * ($this->cart->quantity);
             $this->cart->save();
-            // $this->emit('cartUpdated', $this->cart->id);
         }
     }
     public function render()

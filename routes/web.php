@@ -32,7 +32,6 @@ Route::view('profile', 'profile')
     ->middleware(['auth','verified'])
     ->name('profile');
 
-
     Route::middleware(['auth','verified','admin'])->group(function () {
         Route::get('/Admin/Dashboard/AllProducts', [AdminRosa::class, 'all_products'])->name('all_products');
         Route::get('/Admin/Dashboard/AllProducts/Create', [AdminRosa::class, 'Create'])->name('Create');

@@ -66,14 +66,10 @@ class Rosa extends Controller
     {
         $auth = Auth::id();
         $carts = cart::where('user_id', $auth)->find($id);
-        // Check if the product exists
         if (!$carts) {
             return redirect()->route('cart')->with('error', 'Product not found');
         }
-
-        // Proceed with the deletion
         $carts->delete();
-
         return redirect()->route('cart')->with('success', 'Data deleted successfully');
     }
 
@@ -86,24 +82,18 @@ class Rosa extends Controller
         ]);
         try {
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-
-            // Create Stripe charge
             $stripeCharge = Stripe\Charge::create([
                 "amount" => $request->totalprice * 100,
                 "currency" => "EGP",
                 "source" => $request->stripeToken,
                 "description" => "Test payment from itsolutionstuff.com."
             ]);
-
-            // Start a database transaction
             DB::beginTransaction();
-
             try {
                 $auth = Auth::id();
                 $cart = Cart::where('user_id', $auth)->get();
 
                 foreach ($cart as $item) {
-                    // Create Order
                     $order = new Order;
                     $order->quantity = $item->quantity;
                     $order->total_price = $item->total_price;
@@ -112,41 +102,27 @@ class Rosa extends Controller
                     $order->address =  $validatedData['address'];
                     $order->number = $validatedData['number'];
                     $order->save();
-                    // Delete the item from the cart
                     $item->delete();
                 }
                 DB::commit();
             } catch (\Exception $e) {
-                // Rollback the transaction on exception
                 DB::rollback();
-
-                // return response()->json(['error' => 'Failed to create order.'], 500);
                 return redirect()->back()->with('error', 'Failed to create order.');
             }
-
-            // Continue with any other post-purchase logic
-            // return response()->json(['message' => 'Payment and order creation successful.']);
-
             return redirect()->route('Home')->with('success','Payment and order creation successful.');
         } catch (\Exception $e) {
-            // Handle Stripe exceptions
-            // return response()->json(['error' => $e->getMessage()], 500);
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
     public function check_out()
     {
         $auth = Auth::id();
-        $cart = Cart::where('user_id', $auth)->get(); // Assuming you have a Cart model or class to retrieve the cart
+        $cart = Cart::where('user_id', $auth)->get();
         $totalPrice = 0;
 
         foreach ($cart as $item) {
-            // Assuming there is a 'total_price' property in each item
             $totalPrice += $item->total_price;
         }
-        // dd($totalPrice);
-
-
         return view('MainPages.visa', compact('totalPrice', 'cart'));
     }
 

@@ -167,13 +167,8 @@ section {
 
 @media (max-width: 868px) {
     #contenar {
-        width: auto;
         height: auto;
         display: block;
-    }
-
-    .main-section {
-        /* height: 88vh; */
     }
 }
 

@@ -18,14 +18,11 @@ class RosaController extends Controller
 {
     public function index(Request $request)
     {
-        $sections = Section::all(); // Fetch all sections
-
-        // Filter products by section if selected
+        $sections = Section::all();
         $query = Product::query();
         if ($request->has('section_id') && $request->section_id != '') {
             $query->where('section_id', $request->section_id);
         }
-        // Search functionality
         if ($request->has('search') && $request->search != '') {
             $query->where('name', 'like', '%' . $request->search . '%');
         }

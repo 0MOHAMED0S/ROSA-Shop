@@ -27,7 +27,7 @@ html {
 section.container {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px 10px;
+  gap:29px 65px;
   padding: var(--pad-page, 0 10px);
   justify-content: center;
   /* margin-right: 50px;

@@ -173,7 +173,7 @@ section {
     }
 
     .main-section {
-        height: 88vh;
+        /* height: 88vh; */
     }
 }
 
@@ -238,9 +238,6 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* position: absolute; */
-    /* bottom: -22px;
-    left: 45%; */
     font-size: 18px;
     cursor: pointer;
     width: var(--width-height);

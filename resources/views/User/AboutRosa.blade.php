@@ -33,7 +33,7 @@
                         We take pride in delivering products that not only look beautiful but also hold sentimental value for our customers.
                     </p>
                 </center>                
-            </div>
+            </div> 
         </div>
     </div>
 </x-app-layout>

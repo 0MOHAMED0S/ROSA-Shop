@@ -122,7 +122,6 @@ section div h1 span {
     justify-content: center;
     align-items: center;
 }
-
 ul {
     list-style: none;
     padding: 0;
@@ -130,15 +129,9 @@ ul {
     /* display: flex; */
     align-items: center;
 }
-
 li {
     padding: 8px;
 }
-
-
-
-
-
 #scrollLabel {
     position: fixed;
     bottom: 20px;
@@ -171,7 +164,6 @@ footer center p a {
     section div h1 {
         FONT-SIZE: 25PX;
     }
-
     section div img {
         width: 250px;
         height: 202px;
@@ -189,10 +181,8 @@ footer center p a {
 
     #scrollLabel {
         display: flex;
-
     }
 }
-
 @media (max-height: 461px) {
     .main-section {
         height: auto;

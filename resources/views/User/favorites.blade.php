@@ -38,7 +38,7 @@
                             <p class="card-price">
                                 @if ($favorite->product->discount !== 0)
                                     <span
-                                        class="price-before"><del>{{ $favorite->product->price + $favorite->rosa->discount }}</del>
+                                        class="price-before"><del>{{ $favorite->product->price + $favorite->product->discount }}</del>
                                         EGP</span>
                                 @endif
                                 <span class="price-after">{{ $favorite->product->price }} EGP</span>

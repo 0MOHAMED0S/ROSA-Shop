@@ -1,6 +1,6 @@
 <div>
     @if (auth('web')->check())
-    @if ($rose)
+    @if ($cart)
     <button class="btn active" wire:click="toggleFavorite">
         <i class="fa-duotone fa-cart-shopping "></i>
         {{-- <p class="message-byn">تمت الاضافة</p> --}}

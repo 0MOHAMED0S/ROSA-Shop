@@ -60,18 +60,18 @@
                         </div>
                         <!-- Discount Field (Whole Numbers Only) -->
                         <div class="form-group row">
-                            <label for="discount" class="col-sm-3 text-end control-label col-form-label">Discount
-                                (%)</label>
+                            <label for="discount"
+                                class="col-sm-3 text-end control-label col-form-label">Discount</label>
                             <div class="col-sm-9">
                                 <input type="number" class="form-control @error('discount') is-invalid @enderror"
-                                    id="discount" placeholder="Enter discount percentage" name="discount"
-                                    value="{{ old('discount', $product->discount) }}" min="0" max="100"
-                                    step="1" />
+                                    id="discount" placeholder="Enter discount amount" name="discount"
+                                    value="{{ old('discount', $product->discount) }}" min="0" step="1" />
                                 @error('discount')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
+
 
                         <!-- Description Field -->
                         <div class="form-group row">

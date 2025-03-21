@@ -52,17 +52,17 @@ class ProductController extends Controller
                 $data['path'] = $product->path;
             }
 
-            // Handle Discount
+            // Handle Discount as a Normal Number
             $price = $data['price'];
-            $discount = $data['discount'] ?? 0; // Default discount is 0 if not provided
-            $finalPrice = $price - ($price * ($discount / 100));
+            $discount = $data['discount'] ?? 0; // Default to 0 if not provided
+            $finalPrice = $price - $discount;
 
             // Ensure final price is not less than 1
             if ($finalPrice < 1) {
                 return redirect()->back()->with('error', 'Final price after discount cannot be less than 1.');
             }
 
-            $data['final_price'] = $finalPrice; // Save the calculated final price
+            $data['price'] = $finalPrice; // Save the updated price
 
             // Update the product
             $product->update($data);

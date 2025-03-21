@@ -104,13 +104,6 @@ new class extends Component {
                         </x-slot>
                     </x-dropdown>
                 </div>
-            @else
-                <div
-                    style="align-items: center;
-            text-align: center;
-            display: flex;color: #ff0076;">
-                    <a href="{{ route('auth.google') }}">Login</a>
-                </div>
             @endif
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">

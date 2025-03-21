@@ -176,7 +176,9 @@ footer center p a {
         width: 250px;
         height: 250px;
     }
-
+    .main-section {
+        min-height: 55vh;
+    }
     section {
         margin-top: 18px;
     }

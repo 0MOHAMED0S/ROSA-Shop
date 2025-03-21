@@ -9,17 +9,19 @@
 
     function decrementQuantity(button) {
         var inputElement = button.parentNode.querySelector('.quantity-input');
-        if (parseInt(inputElement.value) > 0) {
+        if (parseInt(inputElement.value) > 1) { // Ensure value never goes below 1
             inputElement.value = parseInt(inputElement.value) - 1;
             updateTotal(inputElement);
         }
     }
 
     function updateTotal(inputElement) {
-        var quantity = parseInt(inputElement.value);
+        var quantity = Math.max(1, parseInt(inputElement.value)); // Ensure min value is 1
+        inputElement.value = quantity; // Prevent manual input below 1
+
         var pricePerUnit = parseFloat(inputElement.closest('tr').querySelector('.price').textContent);
         var total = quantity * pricePerUnit;
-        
+
         // Update the total price cell
         var row = inputElement.closest('tr');
         var totalCell = row.querySelector('.total-price');

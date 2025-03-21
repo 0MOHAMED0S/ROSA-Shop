@@ -1,4 +1,3 @@
-
 <div>
     <div class="rating-favorite">
         @if (auth('web')->check())
@@ -10,7 +9,7 @@
         @endif
     </a>
     @else
-    <a href="{{route('login')}}">
+    <a href="{{route('auth.google')}}">
     <i class="fa-solid fa-heart heart "></i>
     </a>
     @endif

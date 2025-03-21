@@ -10,7 +10,6 @@ new class extends Component {
     public function logout(Logout $logout): void
     {
         $logout();
-
         $this->redirect('/', navigate: true);
     }
 }; ?>
@@ -22,15 +21,14 @@ new class extends Component {
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" wire:navigate>
+                    <a href="{{ route('Home') }}" wire:navigate>
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
-
                 <!-- Navigation Links -->
                 @if (auth()->check() && auth()->user()->status == 1)
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                        <x-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     </div>
@@ -38,54 +36,36 @@ new class extends Component {
 
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('Home')" :active="request()->routeIs('Home')" wire:navigate>
+                    <x-nav-link :href="route('Home')" :active="request()->routeIs('Home')">
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('about_rosa')" :active="request()->routeIs('about_rosa')" wire:navigate>
+                    <x-nav-link :href="route('about.rosa')" :active="request()->routeIs('about.rosa')">
                         {{ __('About Us') }}
-                    </x-nav-link>
-                </div>
-
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('about_ra3d')" :active="request()->routeIs('about_ra3d')" wire:navigate>
-                        {{ __('About Ra3d') }}
-                    </x-nav-link>
-                </div> --}}
-
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('contact_us')" :active="request()->routeIs('contact_us')" wire:navigate>
-                        {{ __('Contact Us') }}
                     </x-nav-link>
                 </div>
                 @if (auth('web')->check())
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('UserOrders')" :active="request()->routeIs('UserOrders')" wire:navigate>
-                        {{ __('Orders ') }}
+                    <x-nav-link :href="route('user.orders')" :active="request()->routeIs('user.orders')">
+                        {{ __('Orders') }}
                     </x-nav-link>
                 </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('favorites')" :active="request()->routeIs('favorites')">
+                            <img width="35" height="30" src="{{ asset('files/main_images/heart (3).png') }}"
+                                alt="">
+                        </x-nav-link>
+                    </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('UserOrdersDone')" :active="request()->routeIs('UserOrdersDone')" wire:navigate>
-                        {{ __('Orders Done ') }}
-                    </x-nav-link>
-                </div>
-@endif
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('favorites')" :active="request()->routeIs('favorites')" wire:navigate>
-                        <img width="35" height="30" src="{{ asset('files/main_images/heart (3).png') }}"
-                            alt="">
-                    </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('cart')" :active="request()->routeIs('cart')" wire:navigate>
-                        <img width="35" height="30" src="{{ asset('files/main_images/flower-shop.png') }}"
-                            alt="">
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('cart')" :active="request()->routeIs('cart')">
+                            <img width="35" height="30" src="{{ asset('files/main_images/flower-shop.png') }}"
+                                alt="">
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             @if (auth('web')->check())
@@ -110,7 +90,7 @@ new class extends Component {
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-dropdown-link :href="route('profile')" wire:navigate>
+                            <x-dropdown-link :href="route('profile')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
 
@@ -119,6 +99,7 @@ new class extends Component {
                                 <x-dropdown-link>
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
+
                             </button>
                         </x-slot>
                     </x-dropdown>
@@ -128,7 +109,7 @@ new class extends Component {
                     style="align-items: center;
             text-align: center;
             display: flex;color: #ff0076;">
-                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('auth.google') }}">Login</a>
                 </div>
             @endif
             <!-- Hamburger -->
@@ -151,19 +132,19 @@ new class extends Component {
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         @if (auth()->check() && auth()->user()->status == 1)
             <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                <x-responsive-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard.index')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
             </div>
         @endif
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('Home')" :active="request()->routeIs('Home')" wire:navigate>
+            <x-responsive-nav-link :href="route('Home')" :active="request()->routeIs('Home')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('about_rosa')" :active="request()->routeIs('about_rosa')" wire:navigate>
+            <x-responsive-nav-link :href="route('about.rosa')" :active="request()->routeIs('about.rosa')">
                 {{ __('About Rosa') }}
             </x-responsive-nav-link>
         </div>
@@ -173,39 +154,25 @@ new class extends Component {
                 {{ __('About Ra3d') }}
             </x-responsive-nav-link>
         </div> --}}
-
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('contact_us')" :active="request()->routeIs('contact_us')" wire:navigate>
-                {{ __('Contact Us') }}
-            </x-responsive-nav-link>
-        </div>
-        @if (auth()->check() && auth()->user()->status == 1)
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('UserOrders')" :active="request()->routeIs('UserOrders')" wire:navigate>
-                {{ __('Orders ') }}
-            </x-responsive-nav-link>
-        </div>
-
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('UserOrdersDone')" :active="request()->routeIs('UserOrdersDone')" wire:navigate>
-                {{ __('Orders Done') }}
-            </x-responsive-nav-link>
-        </div>
-    @endif
-
-
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('favorites')" :active="request()->routeIs('favorites')" wire:navigate>
-                <img width="35" height="30" src="{{ asset('files/main_images/heart (3).png') }}" alt="">
-            </x-responsive-nav-link>
-        </div>
-
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('cart')" :active="request()->routeIs('cart')" wire:navigate>
-                <img width="35" height="30" src="{{ asset('files/main_images/flower-shop.png') }}"
-                    alt="">
-            </x-responsive-nav-link>
-        </div>
+        @if (auth()->check() && auth()->user()->status == 0)
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('user.orders')" :active="request()->routeIs('user.orders')">
+                    {{ __('Orders ') }}
+                </x-responsive-nav-link>
+            </div>
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('favorites')" :active="request()->routeIs('favorites')">
+                    <img width="35" height="30" src="{{ asset('files/main_images/heart (3).png') }}"
+                        alt="">
+                </x-responsive-nav-link>
+            </div>
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('cart')" :active="request()->routeIs('cart')">
+                    <img width="35" height="30" src="{{ asset('files/main_images/flower-shop.png') }}"
+                        alt="">
+                </x-responsive-nav-link>
+            </div>
+        @endif
         @if (auth('web')->check())
             <!-- Responsive Settings Options -->
             <div class="pt-4 pb-1 border-t border-gray-200">
@@ -233,9 +200,9 @@ new class extends Component {
                 style="align-items: center;
             text-align: center;
             display: flex;    margin: 10px;
-    font-size: 19px;
-    padding-left: 5px;color: #ff0076;">
-                <a href="{{ route('login') }}">Login</a>
+            font-size: 19px;
+            padding-left: 5px;color: #ff0076;">
+                <a href="{{ route('auth.google') }}">Login</a>
             </div>
         @endif
     </div>

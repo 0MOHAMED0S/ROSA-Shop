@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class cart extends Model
+class Cart extends Model
 {
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'rosa_id',
+        'product_id',
         'status',
         'quantity',
         'total_price',
@@ -22,8 +22,8 @@ class cart extends Model
         {
             return $this->belongsTo(User::class);
         }
-            public function Rosa(): BelongsTo
-            {
-                return $this->belongsTo(rosa::class);
-            }
+        public function product()
+        {
+            return $this->belongsTo(Product::class);
+        }
 }

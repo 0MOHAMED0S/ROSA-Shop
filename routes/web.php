@@ -1,7 +1,13 @@
 <?php
+
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Rosa;
 use App\Http\Controllers\AdminRosa;
-
+use App\Http\Controllers\Auth\googleAuthController;
+use App\Http\Controllers\User\RosaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,45 +21,73 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/Admin/Dashboard', 'welcome');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified','admin'])
-    ->name('dashboard');
+// ========================== Public Routes ==========================
+Route::get('/', [RosaController::class, 'index'])->name('Home');
 
-Route::get('/', [Rosa::class, 'index'])->name('Home');
-Route::get('/AboutRosa', [Rosa::class, 'about_rosa'])->name('about_rosa');
-Route::get('/ContactUs', [Rosa::class, 'contact_us'])->name('contact_us');
-Route::get('/AboutRa3d', [Rosa::class, 'about_ra3d'])->name('about_ra3d');
-Route::get('/AllProducts/Details/{id}', [Rosa::class, 'user_details'])->name('user_details');
+Route::get('/about-rosa', [RosaController::class, 'about_rosa'])->name('about.rosa');
 
+Route::get('/products/details/{id}', [RosaController::class, 'product_details'])->name('product.details');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth','verified'])
-    ->name('profile');
+// ========================== Authentication Routes ==========================
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/login/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
+});
 
-    Route::middleware(['auth','verified','admin'])->group(function () {
-        Route::get('/Admin/Dashboard/AllProducts', [AdminRosa::class, 'all_products'])->name('all_products');
-        Route::get('/Admin/Dashboard/AllProducts/Create', [AdminRosa::class, 'Create'])->name('Create');
-        Route::post('/Admin/Dashboard/AllProducts/store', [AdminRosa::class, 'store'])->name('store');
-        Route::get('/Admin/Dashboard/AllProducts/edit/{id}', [AdminRosa::class, 'edit'])->name('edit');
-        Route::put('/Admin/Dashboard/AllProducts/update/{id}', [AdminRosa::class, 'update'])->name('update');
-        Route::get('/Admin/Dashboard/AllProducts/delete/{id}', [AdminRosa::class, 'delete'])->name('delete');
-        Route::delete('/Admin/Dashboard/AllProducts/destroy/{id}', [AdminRosa::class, 'destroy'])->name('destroy');
-        Route::get('/Admin/Dashboard/AllProducts/Details/{id}', [AdminRosa::class, 'admin_details'])->name('admin_details');
-        Route::get('/Admin/Dashboard/AllOrders', [AdminRosa::class, 'AllOrders'])->name('AllOrders');
-        Route::post('/Admin/Dashboard/AllOrders/Done', [AdminRosa::class, 'AllOrdersDone'])->name('AllOrdersDone');
-        Route::get('/Admin/Dashboard/DoneOrders', [AdminRosa::class, 'DoneOrders'])->name('DoneOrders');
+// ========================== User Profile Routes ==========================
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::view('/profile', 'profile')->name('profile');
+    Route::post('/logout', [GoogleAuthController::class, 'logout'])->name('logout');
+
+    // Cart & Order Management
+    Route::get('/cart', [RosaController::class, 'cart'])->name('cart');
+    Route::get('/cart/check-out', [RosaController::class, 'check_out'])->name('cart.checkout');
+    Route::post('/cart/check-out', [RosaController::class, 'order'])->name('cart.order');
+    Route::get('/cart/delete/{id}', [RosaController::class, 'del_cart'])->name('cart.delete');
+
+    // Orders
+    Route::get('/user/orders', [RosaController::class, 'UserOrders'])->name('user.orders');
+    Route::get('/order/{id}', [RosaController::class, 'show'])->name('order.details');
+
+    // Favorites
+    Route::get('/favorites', [RosaController::class, 'favorites'])->name('favorites');
+});
+
+// ========================== Admin Routes ==========================
+Route::middleware(['auth', 'verified', 'admin'])->prefix('dashboard')->name('dashboard.')->group(function () {
+    // Dashboard Home
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+    // Sections Management
+    Route::prefix('sections')->name('sections.')->group(function () {
+        Route::get('/', [SectionController::class, 'index'])->name('index');
+        Route::get('/create', [SectionController::class, 'create'])->name('create');
+        Route::post('/create', [SectionController::class, 'store'])->name('store');
+        Route::put('/update/{id}', [SectionController::class, 'update'])->name('update');
+        Route::delete('/destroy/{id}', [SectionController::class, 'destroy'])->name('destroy');
     });
 
-    Route::middleware(['auth','verified'])->group(function () {
-        Route::get('/cart/check_out', [Rosa::class, 'check_out'])->name('check_out');
-        Route::get('/cart/UserOrders', [Rosa::class, 'UserOrders'])->name('UserOrders');
-        Route::get('/cart/UserOrdersDone', [Rosa::class, 'UserOrdersDone'])->name('UserOrdersDone');
-        Route::post('/stripe', [Rosa::class, 'stripe'])->name('stripe.post');
-        Route::get('/Cart', [Rosa::class, 'cart'])->name('cart');
-        Route::get('/cart/delete/{id}', [Rosa::class, 'del_cart'])->name('del_cart');
-        Route::get('/Favorites', [Rosa::class, 'favorites'])->name('favorites');
+    // Orders Management
+    Route::prefix('orders')->name('orders.')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('/{id}', [OrderController::class, 'show'])->name('show');
+        Route::put('/update/{id}', [OrderController::class, 'StatusUpdate'])->name('update');
     });
 
-require __DIR__.'/auth.php';
+    // users Management
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/', [DashboardController::class, 'users'])->name('index');
+    });
+
+    // Products Management
+    Route::prefix('products')->name('products.')->group(function () {
+        Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::get('/create', [ProductController::class, 'create'])->name('create');
+        Route::post('/create', [ProductController::class, 'store'])->name('store');
+        Route::put('/update/{id}', [ProductController::class, 'update'])->name('update');
+        Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('destroy');
+    });
+});
+
+// require __DIR__.'/auth.php';

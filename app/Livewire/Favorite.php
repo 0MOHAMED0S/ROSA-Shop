@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\favorites;
+use App\Models\Favorite as Fav;
 use Livewire\Component;
 
 class Favorite extends Component
@@ -13,7 +13,7 @@ class Favorite extends Component
     public function mount($roseId)
     {
         $this->roseId = $roseId;
-        $this->rose = favorites::where('rosa_id', $roseId)
+        $this->rose = Fav::where('product_id', $roseId)
             ->where('user_id', auth()->id())
             ->first();
     }
@@ -31,9 +31,9 @@ class Favorite extends Component
             $this->rose->delete();
             $this->rose = null;
         } else {
-            $newFavorite = Favorites::create([
+            $newFavorite = Fav::create([
                 'user_id' => $auth,
-                'rosa_id' => $this->roseId, 
+                'product_id' => $this->roseId, 
                 'status' => 1,
             ]);
             $this->rose = $newFavorite;

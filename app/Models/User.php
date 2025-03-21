@@ -26,6 +26,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'status',
         'email',
         'password',
+        'google_id',
+        'email_verified_at'
     ];
 
     /**
@@ -49,22 +51,17 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function favorites(): HasMany
-{
-    return $this->hasMany(Favorites::class);
-}
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    
 public function cart(): HasMany
 {
     return $this->hasMany(Cart::class);
 }
-// User Model
 public function orders()
 {
     return $this->hasMany(Order::class);
 }
-public function OrdersDone()
-{
-    return $this->hasMany(OrdersDone::class);
-}
-
 }

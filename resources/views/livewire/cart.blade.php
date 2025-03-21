@@ -11,10 +11,9 @@
         {{-- <p class="message-byn">تمت الازاله</p> --}}
     </button>
 @endif
-
 @else
 <button class="btn " >
-    <a href="{{route('login')}}">  
+    <a href="{{route('auth.google')}}">
         <i class="fa-duotone fa-cart-shopping "></i>
     </a>
     {{-- <p class="message-byn">تمت الاضافة</p> --}}

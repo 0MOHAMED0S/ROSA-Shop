@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Models\cart as ModelsCart;
-use App\Models\rosa;
+use App\Models\Cart as ModelsCart;
+use App\Models\Product;
 use Livewire\Component;
 
 class Cart extends Component
@@ -17,11 +17,11 @@ class Cart extends Component
     public function mount($roseId)
     {
         $this->roseId = $roseId;
-        $this->rose = ModelsCart::where('rosa_id', $roseId)
-            ->where('user_id', auth()->id())
+        $this->rose = ModelsCart::where('product_id', $roseId)
+            ->where('product_id', auth()->id())
             ->first();
 
-            $this->price = rosa::where('id', $roseId)
+            $this->price = Product::where('id', $roseId)
             ->first();
     }
 
@@ -39,7 +39,7 @@ class Cart extends Component
         } else {
             $newFavorite = ModelsCart::create([
                 'user_id' => $auth,
-                'rosa_id' => $this->roseId, 
+                'product_id' => $this->roseId, 
                 'status' => 1,
                 'total_price'=>$this->price->price
             ]);

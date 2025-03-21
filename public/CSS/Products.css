@@ -33,7 +33,7 @@ section.container {
   margin-left : 50px; */
   margin-bottom: 50px;
   position: relative;
-  
+
 }
 section{
   background-color: transparent;
@@ -87,7 +87,7 @@ section{
 .card > .card-header > .Products-Edit > i {
   position: absolute;
   font-size: 18px;
-  z-index: 99999;
+  z-index: 1;
   color: white;
   cursor: pointer;
   transition: animation 2s linear, color 0.2s linear;
@@ -96,7 +96,7 @@ section{
   -ms-transition: animation 2s linear, color 0.2s linear;
   -o-transition: animation 2s linear, color 0.2s linear;
   color: #333;
-}   
+}
 .card > .card-header > .Products-Edit > i >a{
   display: block;
   width: 30px;

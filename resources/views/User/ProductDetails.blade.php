@@ -40,7 +40,7 @@
                                 </dl>
                             </div>
                             <div id="end">
-                                <p>
+                                <p style="text-align: right; direction: rtl; font-family: 'Tajawal', 'Amiri', 'Cairo', sans-serif;">
                                     {{ $product->description }}
                                 </p>
                                 <br>

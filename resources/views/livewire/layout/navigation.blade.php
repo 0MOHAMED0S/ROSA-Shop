@@ -95,15 +95,20 @@ new class extends Component {
                             </x-dropdown-link>
 
                             <!-- Authentication -->
-                            <button wire:click="logout" class="w-full text-start">
-                                <x-dropdown-link>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class='block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out'>
+                                    <i class="fa fa-power-off me-1 ms-1"></i>
                                     {{ __('Log Out') }}
-                                </x-dropdown-link>
-
-                            </button>
+                                </button>
+                            </form>
                         </x-slot>
                     </x-dropdown>
                 </div>
+            @else
+            <div class="hidden sm:flex items-center text-center text-[#ff0076]">
+                <a href="{{ route('auth.google') }}">Login</a>
+            </div>
             @endif
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">

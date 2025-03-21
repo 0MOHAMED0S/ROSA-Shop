@@ -38,8 +38,10 @@ class ProductController extends Controller
     public function update(ProductRequest $request, $id)
     {
         try {
-            $product=Product::findOrFail($id);
+            $product = Product::findOrFail($id);
             $data = $request->validated();
+
+            // Handle Image Upload
             if ($request->hasFile('path')) {
                 if ($product->path && Storage::disk('public')->exists($product->path)) {
                     Storage::disk('public')->delete($product->path);
@@ -49,13 +51,28 @@ class ProductController extends Controller
             } else {
                 $data['path'] = $product->path;
             }
+
+            // Handle Discount
+            $price = $data['price'];
+            $discount = $data['discount'] ?? 0; // Default discount is 0 if not provided
+            $finalPrice = $price - ($price * ($discount / 100));
+
+            // Ensure final price is not less than 1
+            if ($finalPrice < 1) {
+                return redirect()->back()->with('error', 'Final price after discount cannot be less than 1.');
+            }
+
+            $data['final_price'] = $finalPrice; // Save the calculated final price
+
             // Update the product
             $product->update($data);
+
             return redirect()->back()->with('success', 'The Product Updated Successfully');
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
     public function destroy($id)
     {
         try {

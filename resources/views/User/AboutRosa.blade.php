@@ -34,6 +34,6 @@
                     </p>
                 </center>                
             </div> 
-        </div>
+        </div> 
     </div>
 </x-app-layout>

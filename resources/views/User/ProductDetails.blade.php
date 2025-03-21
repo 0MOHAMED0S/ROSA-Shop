@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('CSS/product_details.css') }}">
     <link rel="stylesheet" href="{{ asset('CSS/all.css') }}">
     @endpush
-    
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Product Details') }}
@@ -19,10 +19,10 @@
                                 <div class="card-header">
                                     <livewire:favorite :roseId="$product->id" />
                                 </div>
-                                    
+
                                 <dl>
                                     <div id="end">
-                                        <h2>{{ $product->title }}</h2>
+                                        <h2>{{ $product->name }}</h2>
                                     </div>
                                     <DIV id="imo">
                                         <center>

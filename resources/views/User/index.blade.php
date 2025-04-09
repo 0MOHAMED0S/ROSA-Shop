@@ -101,6 +101,11 @@
                         </div>
                     </div>
                 @endif
+                <center style="margin-bottom: 25px;margin-top: 25px;">
+                    <div id="shop_div">
+                        <a href="{{route('AllProducts')}}" class="shop_now">See All</a>
+                    </div>
+                </center>
             </div>
             <br>
             <br>

@@ -17,7 +17,7 @@
                 <div class="social-icons">
                     <a href="https://www.facebook.com/profile.php?id=61574142460999&locale=ar_AR" target="_blank"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.instagram.com/rosa_shop77?igsh=MTRrNWp6b3Vyd3F6ZA==" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@rosashop77"><i class="fab fa-tiktok" target="_blank"></i></a>
+                    <a href="https://www.tiktok.com/@rosashop77" target="_blank"><i class="fab fa-tiktok" ></i></a>
                 </div>
             </div>
         </div>

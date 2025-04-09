@@ -11,17 +11,17 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $orderCount = Order::count();
         $sectionCount = Section::count();
         $productCount = Product::count();
         $userCount = User::count();
-        return view('Admin.dashboard',compact('orderCount','productCount','sectionCount','userCount'));
+        return view('Admin.dashboard', compact('orderCount', 'productCount', 'sectionCount', 'userCount'));
     }
     public function users()
-{
-    $users = User::withCount('orders')->get();
-    return view('Admin.Users.AllUsers', compact('users'));
-}
-
+    {
+        $users = User::withCount('orders')->get();
+        return view('Admin.Users.AllUsers', compact('users'));
+    }
 }

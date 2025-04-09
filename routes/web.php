@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\NumberController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Rosa;
 use App\Http\Controllers\AdminRosa;
 use App\Http\Controllers\Auth\googleAuthController;
@@ -24,10 +26,9 @@ use Illuminate\Support\Facades\Route;
 
 // ========================== Public Routes ==========================
 Route::get('/', [RosaController::class, 'index'])->name('Home');
-
+Route::get('/products', [RosaController::class, 'AllProducts'])->name('AllProducts');
 Route::get('/about-rosa', [RosaController::class, 'about_rosa'])->name('about.rosa');
-
-Route::get('/products/details/{id}', [RosaController::class, 'product_details'])->name('product.details');
+Route::get('/products/{id}', [RosaController::class, 'product_details'])->name('product.details');
 
 // ========================== Authentication Routes ==========================
 Route::middleware(['guest'])->group(function () {
@@ -87,6 +88,18 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('dashboard')->name('das
         Route::post('/create', [ProductController::class, 'store'])->name('store');
         Route::put('/update/{id}', [ProductController::class, 'update'])->name('update');
         Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('destroy');
+    });
+
+    // Numbers Management
+    Route::prefix('numbers')->name('numbers.')->group(function () {
+        Route::get('/', [NumberController::class, 'index'])->name('index');
+        Route::put('/update/{id}', [NumberController::class, 'update'])->name('update');
+    });
+
+    // Shipping Management
+    Route::prefix('shipping')->name('shipping.')->group(function () {
+        Route::get('/', [ShippingController::class, 'index'])->name('index');
+        Route::put('/update/{id}', [ShippingController::class, 'update'])->name('update');
     });
 });
 

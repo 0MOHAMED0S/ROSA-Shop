@@ -1,0 +1,69 @@
+.swiper-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.swiper {
+    max-width: 80%;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #ff007f;
+    /* Customize arrow color */
+}
+
+.offer-section {
+    background: linear-gradient(to right, #ff5a8a, #ff85a2);
+    /* Soft pink gradient */
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.offer-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.offer-section p {
+    font-size: 16px;
+}
+
+#countdown {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff007f;
+    /* Magenta to match the Shop Now button */
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.shop-btn {
+    background: white;
+    color: #ff007f;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.shop-btn:hover {
+    background: #ffe6ec;
+    /* Light pink hover effect */
+}

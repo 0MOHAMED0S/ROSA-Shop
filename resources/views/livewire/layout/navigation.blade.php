@@ -42,8 +42,8 @@ new class extends Component {
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('about.rosa')" :active="request()->routeIs('about.rosa')">
-                        {{ __('About Us') }}
+                    <x-nav-link :href="route('AllProducts')" :active="request()->routeIs('AllProducts')">
+                        {{ __('Products') }}
                     </x-nav-link>
                 </div>
                 @if (auth('web')->check())
@@ -142,8 +142,8 @@ new class extends Component {
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('about.rosa')" :active="request()->routeIs('about.rosa')">
-                {{ __('About Rosa') }}
+            <x-responsive-nav-link :href="route('AllProducts')" :active="request()->routeIs('AllProducts')">
+                {{ __('Products') }}
             </x-responsive-nav-link>
         </div>
 
@@ -181,7 +181,7 @@ new class extends Component {
                 </div>
 
                 <div class="mt-3 space-y-1">
-                    <x-responsive-nav-link :href="route('profile')" wire:navigate>
+                    <x-responsive-nav-link :href="route('profile')" >
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
 

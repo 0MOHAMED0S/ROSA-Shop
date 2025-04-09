@@ -1,0 +1,109 @@
+
+    
+    /* Search Bar */
+    .search-form {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+        margin-bottom: 15px;
+    }
+
+    .search-input {
+        flex: 1;
+        border: 2px solid #ff0076;
+        border-radius: 8px;
+        padding: 8px 12px;
+        min-width: 200px;
+    }
+
+    .search-button {
+        background-color: #ff0076;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* Section Buttons */
+    .section-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        max-width: 800px;
+        width: 100%;
+    }
+
+    .section-btn {
+        padding: 8px 12px;
+        border: 2px solid #ff0076;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        color: #ff0076;
+        transition: 0.3s;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .section-btn:hover,
+    .section-btn.active {
+        background-color: #ff0076;
+        color: white;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .search-form {
+            flex-wrap: nowrap;
+            max-width: 100%;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            min-width: 150px;
+        }
+
+        .section-container {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .section-btn {
+            font-size: 14px;
+            padding: 6px 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .search-form {
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            min-width: 120px;
+        }
+
+        .search-button {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+
+        .section-container {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .section-btn {
+            font-size: 13px;
+            padding: 5px 8px;
+        }
+    }

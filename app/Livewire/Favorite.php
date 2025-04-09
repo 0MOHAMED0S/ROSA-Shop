@@ -4,21 +4,26 @@ namespace App\Livewire;
 
 use App\Models\Favorite as Fav;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Favorite extends Component
 {
-    public $rose;
-    public $roseId;
+    public $favorite;
+    public $productId;
 
-    public function mount($roseId)
-    {
-        $this->roseId = $roseId;
-        $this->rose = Fav::where('product_id', $roseId)
-            ->where('user_id', auth()->id())
+    public function mount($productId)
+{
+    $this->productId = $productId;
+    $userId = Auth::id();
+
+    if ($userId) {
+        $this->favorite = Fav::where('product_id', $productId)
+            ->where('user_id', $userId)
             ->first();
+    } else {
+        $this->favorite = null;
     }
-
-
+}
     public function render()
     {
         return view('livewire.favorite');
@@ -26,17 +31,18 @@ class Favorite extends Component
 
     public function toggleFavorite()
     {
-        $auth = auth()->id();
-        if ($this->rose) {
-            $this->rose->delete();
-            $this->rose = null;
+        if (!Auth::check()) {
+            return;
+        }
+
+        if ($this->favorite) {
+            $this->favorite->delete();
+            $this->favorite = null;
         } else {
-            $newFavorite = Fav::create([
-                'user_id' => $auth,
-                'product_id' => $this->roseId, 
-                'status' => 1,
-            ]);
-            $this->rose = $newFavorite;
+            $this->favorite = Fav::updateOrCreate(
+                ['user_id' => Auth::id(), 'product_id' => $this->productId],
+                ['status' => 1]
+            );
         }
     }
 }

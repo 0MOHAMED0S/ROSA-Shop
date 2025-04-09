@@ -23,7 +23,7 @@
                     @foreach ($products as $favorite)
                         <div class="card">
                             <div class="card-header">
-                                <livewire:favorite :roseId="$favorite->product->id" />
+                                <livewire:favorite :productId="$favorite->product->id" />
                                 <a href="{{ route('product.details', ['id' => $favorite->product->id]) }}"
                                     class="canonical">
                                     <div class="img-cont">
@@ -44,7 +44,7 @@
                                     @endif
                                     <span class="price-after">{{ $favorite->product->price }} EGP</span>
                                 </p>
-                                <livewire:cart :roseId="$favorite->product->id" />
+                                <livewire:cart :productId="$favorite->product->id" />
                             </div>
                         </div>
                     @endforeach
@@ -52,4 +52,7 @@
             </section>
         </div>
     </div>
+    @push('scripts')
+    <script src="{{ asset('JS/main.js') }}"></script>
+@endpush
 </x-app-layout>

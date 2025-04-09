@@ -9,6 +9,7 @@
             {{ __('Product Details') }}
         </h2>
     </x-slot>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -17,23 +18,25 @@
                         <div id="contenar">
                             <div id="start">
                                 <div class="card-header">
-                                    <livewire:favorite :roseId="$product->id" />
+                                    <livewire:favorite :productId="$product->id" />
                                 </div>
 
                                 <dl>
                                     <div id="end">
                                         <h2>{{ $product->name }}</h2>
                                     </div>
-                                    <DIV id="imo">
+                                    <div id="imo">
                                         <center>
-                                            <img src="{{ asset('storage/' . $product->path) }}" alt="ros">
+                                            <img src="{{ asset('storage/' . $product->path) }}" 
+                                                 id="product-img"
+                                                 alt="Product Image">
                                         </center>
-                                    </DIV>
+                                    </div>
                                     <center id="center">
                                         @if ($product->discount !== 0)
-                                            <span
-                                                class="price-before"><del>{{ $product->price + $product->discount }}</del>
-                                                EGP</span>
+                                            <span class="price-before">
+                                                <del>{{ $product->price + $product->discount }}</del> EGP
+                                            </span>
                                         @endif
                                         <span class="price-after">{{ $product->price }} EGP</span>
                                     </center>
@@ -46,7 +49,7 @@
                                 <br>
                                 <center>
                                     <div class="card-footer">
-                                            <livewire:cart :roseId="$product->id" />
+                                        <livewire:cart :productId="$product->id" />
                                     </div>
                                 </center>
                             </div>
@@ -56,7 +59,17 @@
             </div>
         </div>
     </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+        <div class="relative">
+            <img id="lightbox-img" class="max-w-full max-h-[90vh] rounded-lg shadow-lg" alt="Product Image">
+            <button id="close-lightbox" class="absolute top-2 right-2 text-white text-3xl">&times;</button>
+        </div>
+    </div>
+
     @push('scripts')
     <script src="{{ asset('JS/main.js') }}"></script>
+    <script src="{{ asset('JS/lightbox.js') }}"></script>
     @endpush
 </x-app-layout>

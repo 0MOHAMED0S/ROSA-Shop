@@ -67,7 +67,7 @@
                                     @foreach ($products as $product)
                                         <tr>
                                             <td><img src="{{ asset('storage/' . $product->path) }}" width="50"
-                                                    height="50" class="rounded-circle" alt=""></td>
+                                            height="50" class="rounded-circle" alt=""></td>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->section->name }}</td>
                                             <td>{{ $product->price }}</td>
@@ -95,7 +95,5 @@
                 </div>
             </div>
         </div>
-        <!-- End Page Content -->
     </div>
-    <!-- End Container fluid -->
 @endsection

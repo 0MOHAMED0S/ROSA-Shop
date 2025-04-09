@@ -29,7 +29,8 @@
             <div class="flex justify-between items-center bg-gray-100 p-4 rounded-md mb-6">
                 <span class="text-lg font-medium text-gray-700">Total Price:</span>
                 <span
-                    class="text-xl font-semibold text-green-600">{{ number_format($totalPrice, 2) . '+' . 50 }} EGP</span>
+                    class="text-xl font-semibold text-green-600">{{ number_format($totalPrice, 2) . '+' . $shippingCost->cost }}
+                    EGP</span>
             </div>
 
             <!-- Contact Information -->
@@ -65,13 +66,13 @@
                 <div class="flex justify-center mt-6">
                     <button
                         style="
-    background-color: #ff0076; 
-    color: white; 
-    border: none; 
-    padding: 10px 20px; 
-    font-size: 16px; 
-    font-weight: bold; 
-    border-radius: 8px; 
+    background-color: #ff0076;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;">
                         Order Now
                     </button>

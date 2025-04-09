@@ -2,24 +2,25 @@
 
 namespace App\Livewire;
 
-use App\Models\Cart as ModelsCart;
+use App\Models\Cart as CartModel;
 use App\Models\Product;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Cart extends Component
 {
     public $cart;
-    public $roseId;
+    public $productId;
     public $price;
 
-    public function mount($roseId)
+    public function mount($productId)
     {
-        $this->roseId = $roseId;
-        $this->cart = ModelsCart::where('product_id', $roseId)
-            ->where('user_id', auth()->id()) // Fixed condition
+        $this->productId = $productId;
+        $this->cart = CartModel::where('product_id', $productId)
+            ->where('user_id', Auth::id())
             ->first();
 
-        $this->price = Product::where('id', $roseId)->value('price'); // Fetch only price
+        $this->price = Product::where('id', $productId)->value('price');
     }
 
     public function render()
@@ -27,20 +28,20 @@ class Cart extends Component
         return view('livewire.cart');
     }
 
-    public function toggleFavorite()
+    public function toggleCartItem()
     {
-        $auth = auth()->id();
+        if (!Auth::check()) {
+            return;
+        }
 
         if ($this->cart) {
             $this->cart->delete();
             $this->cart = null;
         } else {
-            $this->cart = ModelsCart::create([
-                'user_id' => $auth,
-                'product_id' => $this->roseId,
-                'status' => 1,
-                'total_price' => $this->price, // Fixed total price
-            ]);
+            $this->cart = CartModel::updateOrCreate(
+                ['user_id' => Auth::id(), 'product_id' => $this->productId],
+                ['status' => 1, 'total_price' => $this->price]
+            );
         }
     }
 }

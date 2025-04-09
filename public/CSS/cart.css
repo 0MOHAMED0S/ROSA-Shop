@@ -143,4 +143,61 @@ table tbody tr td img {
         height: auto;
         margin: 50px;
     }
+}@media (max-width: 768px) {
+    .cart-container {
+        padding: 15px;
+    }
+
+    .cart-table {
+        display: block;
+        width: 100%;
+    }
+
+    .cart-table thead {
+        display: none;
+    }
+
+    .cart-table tbody {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cart-table tr {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        font-size: 14px;
+    }
+
+    .cart-table img {
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+    }
+
+    .cart-total {
+        text-align: center;
+        font-size: 16px;
+        padding-top: 10px;
+    }
+
+    .btn-primary, .delete-btn {
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        padding: 12px;
+        display: block;
+        margin-top: 10px;
+    }
 }

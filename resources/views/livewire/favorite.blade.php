@@ -1,18 +1,13 @@
 <div>
     <div class="rating-favorite">
-        @if (auth('web')->check())
-    <a wire:click="toggleFavorite">
-        @if ($rose)
-        <i class="fa-solid fa-heart heart active"></i>
+        @auth('web')
+            <a wire:click="toggleFavorite">
+                <i class="fa-solid fa-heart heart {{ $favorite ? 'active' : '' }}"></i>
+            </a>
         @else
-        <i class="fa-solid fa-heart heart "></i>
-        @endif
-    </a>
-    @else
-    <a href="{{route('auth.google')}}">
-    <i class="fa-solid fa-heart heart "></i>
-    </a>
-    @endif
-
+            <a href="{{ route('auth.google') }}">
+                <i class="fa-solid fa-heart heart"></i>
+            </a>
+        @endauth
     </div>
 </div>

@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
             'name' => 'required|string|max:255|unique:products,name',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0|max:999999.99',
-            'discount' => 'nullable|integer|min:0|max:100',
+            'discount' => 'nullable|integer',
             'section_id' => 'required|exists:sections,id',
             'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
@@ -40,7 +40,7 @@ class ProductRequest extends FormRequest
             'name' => 'required|string|max:255|unique:products,name,' . $productId,
             'description' => 'required|string',
             'price' => 'required|numeric|min:0|max:999999.99',
-            'discount' => 'nullable|integer|min:0|max:100',
+            'discount' => 'nullable|integer|min:0',
             'section_id' => 'required|exists:sections,id',
             'path' => 'nullable|mimes:jpeg,png,jpg,gif|max:2048',
         ];

@@ -125,34 +125,37 @@
                     </p>
 
                     <!-- Social Media & Orders Stats -->
-                    <div class="flex flex-wrap justify-center gap-4 mt-8">
-                        <a href="https://www.instagram.com/rosa_shop77?igsh=MTRrNWp6b3Vyd3F6ZA==" target="_blank">
-                            <div class="bg-pink-100 p-4 w-36 flex flex-col items-center rounded-lg shadow-md">
-                                <i class="fab fa-instagram text-2xl text-pink-600"></i>
-                                <p class="text-lg font-bold text-gray-800">Instagram</p>
-                                <p id="instagram-followers" class="text-xl font-extrabold text-pink-600">0</p>
-                            </div>
-                        </a>
-                        <a href="https://www.tiktok.com/@rosashop77" target="_blank">
-                            <div class="bg-blue-100 p-4 w-36 flex flex-col items-center rounded-lg shadow-md">
-                                <i class="fab fa-tiktok text-2xl text-black"></i>
-                                <p class="text-lg font-bold text-gray-800">TikTok</p>
-                                <p id="tiktok-followers" class="text-xl font-extrabold text-blue-600">0</p>
-                            </div>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61574142460999&locale=ar_AR" target="_blank">
-                            <div class="bg-indigo-100 p-4 w-36 flex flex-col items-center rounded-lg shadow-md">
-                                <i class="fab fa-facebook text-2xl text-blue-800"></i>
-                                <p class="text-lg font-bold text-gray-800">Facebook</p>
-                                <p id="facebook-followers" class="text-xl font-extrabold text-indigo-600">0</p>
-                            </div>
-                        </a>
-                        <div class="bg-green-100 p-4 w-36 flex flex-col items-center rounded-lg shadow-md">
-                            <i class="fas fa-shopping-cart text-2xl text-green-600"></i>
-                            <p class="text-lg font-bold text-gray-800">Orders</p>
-                            <p id="orders-count" class="text-xl font-extrabold text-green-600">0</p>
-                        </div>
-                    </div>
+<div class="flex flex-wrap justify-center gap-4 mt-8 px-2">
+    <a href="https://www.instagram.com/rosa_shop77?igsh=MTRrNWp6b3Vyd3F6ZA==" target="_blank" class="w-1/2 sm:w-36">
+        <div class="bg-pink-100 p-4 flex flex-col items-center rounded-lg shadow-md">
+            <i class="fab fa-instagram text-2xl text-pink-600"></i>
+            <p class="text-lg font-bold text-gray-800">Instagram</p>
+            <p id="instagram-followers" class="text-xl font-extrabold text-pink-600">0</p>
+        </div>
+    </a>
+    <a href="https://www.tiktok.com/@rosashop77" target="_blank" class="w-1/2 sm:w-36">
+        <div class="bg-blue-100 p-4 flex flex-col items-center rounded-lg shadow-md">
+            <i class="fab fa-tiktok text-2xl text-black"></i>
+            <p class="text-lg font-bold text-gray-800">TikTok</p>
+            <p id="tiktok-followers" class="text-xl font-extrabold text-blue-600">0</p>
+        </div>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61574142460999&locale=ar_AR" target="_blank" class="w-1/2 sm:w-36">
+        <div class="bg-indigo-100 p-4 flex flex-col items-center rounded-lg shadow-md">
+            <i class="fab fa-facebook text-2xl text-blue-800"></i>
+            <p class="text-lg font-bold text-gray-800">Facebook</p>
+            <p id="facebook-followers" class="text-xl font-extrabold text-indigo-600">0</p>
+        </div>
+    </a>
+    <div class="w-1/2 sm:w-36">
+        <div class="bg-green-100 p-4 flex flex-col items-center rounded-lg shadow-md">
+            <i class="fas fa-shopping-cart text-2xl text-green-600"></i>
+            <p class="text-lg font-bold text-gray-800">Orders</p>
+            <p id="orders-count" class="text-xl font-extrabold text-green-600">0</p>
+        </div>
+    </div>
+</div>
+
                 </div>
             </section>
 
@@ -239,6 +242,6 @@
             var facebookCount = {{ $number->face }};
             var ordersCount = {{ $number->orders }};
         </script>
-        
+
     @endpush
 </x-app-layout>

@@ -1,12 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     new Swiper('.mySwiper', {
         slidesPerView: 3,
         spaceBetween: 20,
         loop: true,
         centeredSlides: true,
         autoplay: {
-            delay: 2000, // Move slides every 1 second
-            disableOnInteraction: false, // Keeps autoplay running even after user interaction
+            delay: 2000,
+            disableOnInteraction: false,
         },
         navigation: {
             nextEl: '.swiper-button-next',
@@ -17,14 +17,17 @@ document.addEventListener('DOMContentLoaded', function() {
             clickable: true,
         },
         breakpoints: {
-            1024: {
-                slidesPerView: 3
+            // screens <= 480px
+            0: {
+                slidesPerView: 1
             },
-            768: {
+            // screens >= 640px
+            640: {
                 slidesPerView: 2
             },
-            480: {
-                slidesPerView: 1
+            // screens >= 1024px
+            1024: {
+                slidesPerView: 3
             }
         }
     });

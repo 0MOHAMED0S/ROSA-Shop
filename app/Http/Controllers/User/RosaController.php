@@ -172,4 +172,30 @@ class RosaController extends Controller
     {
         return view('User.AboutRosa');
     }
+
+    public function blogs()
+    {
+        return view('User.Blogs.cards');
+    }
+    public function blogs_flowers()
+    {
+        return view('User.Blogs.details.blog1');
+    }
+    public function blogs_makeup()
+    {
+        return view('User.Blogs.details.blog2');
+    }
+    public function blogs_bags()
+    {
+        return view('User.Blogs.details.blog3');
+    }
+    public function blogs_gifts()
+    {
+        return view('User.Blogs.details.blog4');
+    }
+    public function blogs_care()
+    {
+        return view('User.Blogs.details.blog5');
+    }
+    
 }

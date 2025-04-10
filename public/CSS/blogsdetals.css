@@ -1,0 +1,110 @@
+
+/* Elegant and Emotional Blog Layout */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.blog-header {
+    background-color: #ff5a8f;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.blog-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.blog-content {
+    padding: 50px 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-top: -60px;
+    position: relative;
+    z-index: 1;
+}
+
+.blog-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ff5a8f;
+    margin-bottom: 25px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.blog-text p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 30px;
+    text-align: justify;
+    text-indent: 2em;
+}
+
+.cta-link {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 15px 30px;
+    background-color: #ff5a8f;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.cta-link:hover {
+    background-color: #e24e74;
+    transform: translateY(-4px);
+}
+
+.blog-image {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.blog-image-container {
+    margin-top: 50px;
+    text-align: center;
+}
+
+/* RTL Support */
+.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .blog-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .blog-title {
+        font-size: 1.5rem;
+    }
+
+    .blog-text p {
+        font-size: 1rem;
+    }
+}

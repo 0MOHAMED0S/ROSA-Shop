@@ -82,12 +82,12 @@
 }
 
 #contenar #start img {
-    width: 300px;
-    /* height: 250px; */
+    width: 250px;
+    height: 250px;
     cursor: pointer;
     border-radius: 25px;
     border: 1px solid #ff0076;
-    margin: 15px 0 10px 25px;
+    margin: 5px;
     transition: 0.8S;
 }
 

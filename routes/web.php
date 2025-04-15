@@ -32,11 +32,11 @@ Route::get('/products/{id}', [RosaController::class, 'product_details'])->name('
     // users Management
     Route::prefix('blogs')->name('blogs.')->group(function () {
         Route::get('/', [RosaController::class, 'blogs'])->name('index');
-        Route::get('/flowers', [RosaController::class, 'blogs_flowers'])->name('flowers');
-        Route::get('/makeup', [RosaController::class, 'blogs_makeup'])->name('makeup');
-        Route::get('/bags', [RosaController::class, 'blogs_bags'])->name('bags');
-        Route::get('/gifts', [RosaController::class, 'blogs_gifts'])->name('gifts');
-        Route::get('/care', [RosaController::class, 'blogs_care'])->name('care');
+        Route::get('/1', [RosaController::class, 'blogs_flowers'])->name('flowers');
+        Route::get('/2', [RosaController::class, 'blogs_makeup'])->name('makeup');
+        Route::get('/3', [RosaController::class, 'blogs_bags'])->name('bags');
+        Route::get('/4', [RosaController::class, 'blogs_gifts'])->name('gifts');
+        Route::get('/5', [RosaController::class, 'blogs_care'])->name('care');
     });
 // ========================== Authentication Routes ==========================
 Route::middleware(['guest'])->group(function () {

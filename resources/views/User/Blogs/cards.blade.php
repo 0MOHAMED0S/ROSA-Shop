@@ -22,7 +22,7 @@
                     <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 mb-8">
                         <!-- زهور -->
                         <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition overflow-hidden">
-                            <img src="{{ asset('files/main_images/blogs/f1.jpg') }}" class="w-full h-48 object-cover"
+                            <img src="{{ asset('files/main_images/blogs/f4.jpg') }}" class="w-full h-48 object-cover"
                                 alt="تنسيقات الزهور">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-pink-600">سحر الزهور</h3>
@@ -50,7 +50,7 @@
 
                         <!-- شنط اللولي -->
                         <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition overflow-hidden">
-                            <img src="{{ asset('files/main_images/blogs/b1.jpg') }}" class="w-full h-48 object-cover"
+                            <img src="{{ asset('files/main_images/blogs/b2.jpg') }}" class="w-full h-48 object-cover"
                                 alt="شنط لولي">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-pink-600">أناقة شنط اللولي</h3>
@@ -67,31 +67,29 @@
                     <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-2">
                         <!-- هدايا يدوية -->
                         <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition overflow-hidden">
-                            <img src="{{ asset('files/main_images/blogs/g1.jpg') }}" class="w-full h-48 object-cover"
+                            <img src="{{ asset('files/main_images/blogs/c.png') }}" class="w-full h-48 object-cover"
                                 alt="هدايا يدوية">
                             <div class="p-4">
-                                <h3 class="text-lg font-bold text-pink-600">الهدايا من القلب</h3>
+                                <h3 class="text-lg font-bold text-pink-600">لمسة أنوثة وفخامة من روزه</h3>
                                 <p class="text-sm text-gray-600 mt-1 line-clamp-3">
-                                    هدايا مصنوعة يدويًا تعبّر عن الحب والاهتمام – مثالية للمناسبات الخاصة والمفاجآت الجميلة.
+                                    الأنوثة الحقيقية تنبع من التفاصيل... اكتشفي كيف تضيف روزه لمسات ناعمة من الجمال والرقي لحياتك اليومية من خلال المكياج، الورد، والإكسسوارات.
                                 </p>
                                 <a href="{{route('blogs.gifts')}}"
                                     class="block mt-3 text-pink-500 hover:underline text-sm font-medium">اقرأ المزيد →</a>
                             </div>
                         </div>
 
-                        <!-- العناية بالنفس -->
                         <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition overflow-hidden">
-                            <img src="{{ asset('files/main_images/blogs/f2.jpeg') }}" class="w-full h-48 object-cover"
-                                alt="روتين العناية بالنفس">
+                            <img src="{{ asset('files/main_images/blogs/f3.webp') }}" class="w-full h-48 object-cover"
+                                alt="الأناقة تبدأ من التفاصيل">
                             <div class="p-4">
-                                <h3 class="text-lg font-bold text-pink-600">روتين العناية بالنفس</h3>
+                                <h3 class="text-lg font-bold text-pink-600">الأناقة تبدأ من التفاصيل</h3>
                                 <p class="text-sm text-gray-600 mt-1 line-clamp-3">
-                                    كيف تضيف الزهور والجمال والهدوء إلى روتينك اليومي لعيش حياة مليئة بالراحة والسعادة؟
+                                    اكتشفي ميكب روزه الأصلي، شنط اللولي الفخمة، وورد الستان اللي يزين يومك ويكمل جمالك بكل لحظة.
                                 </p>
-                                <a href="{{route('blogs.care')}}"
-                                    class="block mt-3 text-pink-500 hover:underline text-sm font-medium">اقرأ المزيد →</a>
+                                <a href="{{ route('blogs.care') }}" class="block mt-3 text-pink-500 hover:underline text-sm font-medium">اقرأ المزيد →</a>
                             </div>
-                        </div>
+                        </div>                        
                     </div>
 
                 </div>

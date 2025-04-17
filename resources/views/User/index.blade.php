@@ -121,7 +121,7 @@
                         Each product is made with love and attention to detail, ensuring you receive something truly
                         special. 💖
                     </p>
-            
+
                     <!-- Social Media & Orders Stats -->
                     <div class="grid grid-cols-2 gap-4 mt-8 px-2">
                         <a href="https://www.instagram.com/rosa_shop77?igsh=MTRrNWp6b3Vyd3F6ZA==" target="_blank" class="social-card">
@@ -138,7 +138,7 @@
                                 <p id="tiktok-followers" class="text-xl font-extrabold text-blue-600">0</p>
                             </div>
                         </a>
-                        <a href="https://www.facebook.com/profile.php?id=61574142460999&locale=ar_AR" target="_blank" class="social-card">
+                        <a href="https://web.facebook.com/profile.php?id=61574415336053" target="_blank" class="social-card">
                             <div class="bg-indigo-100 p-4 flex flex-col items-center rounded-lg shadow-md">
                                 <i class="fab fa-facebook text-2xl text-blue-800"></i>
                                 <p class="text-lg font-bold text-gray-800">Facebook</p>
@@ -155,7 +155,7 @@
                     </div>
                 </div>
             </section>
-            
+
 
             <!-- Testimonials Section -->
             <div class="bg-gray-100 py-12 mt-10">

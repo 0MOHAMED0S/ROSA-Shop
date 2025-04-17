@@ -15,7 +15,7 @@
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=61574142460999&locale=ar_AR" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://web.facebook.com/profile.php?id=61574415336053" target="_blank"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.instagram.com/rosa_shop77?igsh=MTRrNWp6b3Vyd3F6ZA==" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.tiktok.com/@rosashop77" target="_blank"><i class="fab fa-tiktok" ></i></a>
                 </div>

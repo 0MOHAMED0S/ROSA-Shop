@@ -172,8 +172,12 @@
                                     class="mx-auto w-16 h-16 rounded-full mb-3">
                                 <p class="text-lg font-semibold text-gray-800">Elzoz</p>
                                 <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
-                                <p class="text-gray-600 mt-3">"المنتجات  بجد رووعه ما شاء الله "</p>
-                            </div>
+                                <div class="flex justify-center gap-2">
+                                    <img src="{{ asset('files/main_images/rate/f1.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f2.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                </div>
+                                <p class="text-gray-600 mt-3 mb-3">"المنتجات بجد رووعه ما شاء الله "</p>
+                                </div>
                             <!-- Testimonial 3 -->
                             <div
                                 class="testimonial-slide w-full flex-shrink-0 p-6 text-center bg-white rounded-lg shadow-lg">
@@ -181,6 +185,10 @@
                                     class="mx-auto w-16 h-16 rounded-full mb-3">
                                 <p class="text-lg font-semibold text-gray-800">M.Magdy</p>
                                 <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
+                                <div class="flex justify-center gap-2">
+                                    <img src="{{ asset('files/main_images/rate/f3.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f1.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                </div>
                                 <p class="text-gray-600 mt-3">"Highly recommend Rosa Shop!"</p>
                             </div>
                             <!-- Testimonial 2 -->
@@ -190,6 +198,10 @@
                                     class="mx-auto w-16 h-16 rounded-full mb-3">
                                 <p class="text-lg font-semibold text-gray-800">Ahmed M. ElDardery</p>
                                 <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
+                                <div class="flex justify-center gap-2">
+                                    <img src="{{ asset('files/main_images/rate/f1.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f4.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                </div>
                                 <p class="text-gray-600 mt-3">"  الجوده عاليه والخدمه ممتازه  "</p>
                             </div>
                             <!-- Testimonial 5 -->
@@ -199,6 +211,10 @@
                                     class="mx-auto w-16 h-16 rounded-full mb-3">
                                 <p class="text-lg font-semibold text-gray-800">Eprahem </p>
                                 <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
+                                <div class="flex justify-center gap-2">
+                                    <img src="{{ asset('files/main_images/rate/f3.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f4.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                </div>
                                 <p class="text-gray-600 mt-3">"الورد تحفه 🌹"</p>
                             </div>
                             <div
@@ -207,6 +223,9 @@
                                     class="mx-auto w-16 h-16 rounded-full mb-3">
                                 <p class="text-lg font-semibold text-gray-800">M.Sayed </p>
                                 <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
+                                <div class="flex justify-center gap-2">
+                                    <img src="{{ asset('files/main_images/rate/f5.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                </div>
                                 <p class="text-gray-600 mt-3">"🤍🤍"</p>
                             </div>
                         </div>

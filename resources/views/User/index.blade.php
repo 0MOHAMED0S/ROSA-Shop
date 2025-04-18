@@ -5,6 +5,49 @@
         <link rel="stylesheet" href="{{ asset('CSS/all.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
         <link rel="stylesheet" href="{{ asset('CSS/swipper.css') }}">
+<style>
+    .slider-container {
+    position: relative;
+    width: 100%; /* Full width */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    flex: 0 0 auto; /* Ensures slides don't stretch */
+    width: 100%; /* Each slide takes full width */
+    box-sizing: border-box;
+}
+
+.dots-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(19, 8, 8, 0.6);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: rgb(255, 0, 187);
+}
+
+</style>
     @endpush
 
     <x-slot name="header">
@@ -38,18 +81,28 @@
                 </div>
                 <br id="down" style="padding-bottom: 50px;">
             </section>
-            <!-- Free Shipping Offer Section -->
-            <div
-                class="offer-section bg-gradient-to-r from-blue-500 to-purple-600 text-white p-8 rounded-lg shadow-lg text-center mb-10">
-                <h2 class="text-3xl font-extrabold">🚚 FREE SHIPPING ON ALL ORDERS! 🎉</h2>
-                <p class="text-lg mt-2">Limited-time offer! Get your favorite products with free shipping before time
-                    runs out.</p>
-
-                <!-- Countdown Timer -->
-                <div id="countdown"
-                    class="text-4xl font-bold mt-4 bg-white text-red-600 p-4 rounded-lg inline-block shadow-md"></div>
+            <div class="slider-container">
+                <!-- Slider Content -->
+                <div class="slider">
+                    <!-- First Offer -->
+                    <a href="{{route('events.index')}}" class="slide bg-gradient-to-r from-pink-500 to-yellow-500 text-white p-8 rounded-lg shadow-lg text-center mb-10">
+                        <h2 class="text-3xl font-extrabold">🎉 خمن الرقم واربح هدية مجانية!</h2>
+                        <p class="text-lg mt-2">🤩 محاولات لتربح إحدى الهدايا الرائعة. جرب حظك الآن قبل نفاد الوقت!</p>
+                    </a>
+                    <!-- Second Offer -->
+                    <div class="slide bg-gradient-to-r from-blue-500 to-purple-600 text-white p-8 rounded-lg shadow-lg text-center mb-10">
+                        <h2 class="text-3xl font-extrabold">🚚 الشحن المجاني على جميع الطلبات! 🎉</h2>
+                        <p class="text-lg mt-2">عرض لفترة محدودة! احصل على منتجاتك المفضلة مع الشحن المجاني قبل نفاد الوقت.</p>
+                    </div>                    
+                </div>
+            
+                <!-- Navigation Dots -->
+                <div class="dots-container">
+                    <span class="dot" onclick="moveSlide(1)"></span>
+                    <span class="dot" onclick="moveSlide(2)"></span>
+                </div>
             </div>
-
+            
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <center style="margin-bottom: 50px;">
                     <h1 style="    font-weight: 1000;font-size: 37px;" class="CATEGORIES">Best Sellers ↗️</h1>
@@ -103,7 +156,7 @@
                 @endif
                 <center style="margin-bottom: 25px;margin-top: 25px;">
                     <div id="shop_div">
-                        <a href="{{route('AllProducts')}}" class="shop_now">See All</a>
+                        <a href="{{ route('AllProducts') }}" class="shop_now">See All</a>
                     </div>
                 </center>
             </div>
@@ -111,10 +164,12 @@
             <br>
             <section>
                 <!-- About Us Section -->
-                <div id="about-us" class="about-us-section bg-white text-gray-800 p-12 rounded-lg shadow-lg text-center mb-10">
+                <div id="about-us"
+                    class="about-us-section bg-white text-gray-800 p-12 rounded-lg shadow-lg text-center mb-10">
                     <h2 class="text-4xl font-extrabold text-pink-600 mb-4">🌸 About Rosa Shop 🌸</h2>
                     <p class="text-lg leading-relaxed max-w-3xl mx-auto text-gray-700">
-                        At <span class="font-bold text-pink-500">Rosa Shop</span>, we are passionate about crafting the finest
+                        At <span class="font-bold text-pink-500">Rosa Shop</span>, we are passionate about crafting the
+                        finest
                         <span class="font-semibold">handmade products</span>. Our collection includes exquisite
                         <span class="text-pink-500">flower bouquets, elegant pearl bags, and high-quality makeup
                             items</span>.
@@ -124,7 +179,8 @@
 
                     <!-- Social Media & Orders Stats -->
                     <div class="grid grid-cols-2 gap-4 mt-8 px-2">
-                        <a href="https://www.instagram.com/rosa_shop77?igsh=MTRrNWp6b3Vyd3F6ZA==" target="_blank" class="social-card">
+                        <a href="https://www.instagram.com/rosa_shop77?igsh=MTRrNWp6b3Vyd3F6ZA==" target="_blank"
+                            class="social-card">
                             <div class="bg-pink-100 p-4 flex flex-col items-center rounded-lg shadow-md">
                                 <i class="fab fa-instagram text-2xl text-pink-600"></i>
                                 <p class="text-lg font-bold text-gray-800">Instagram</p>
@@ -138,7 +194,8 @@
                                 <p id="tiktok-followers" class="text-xl font-extrabold text-blue-600">0</p>
                             </div>
                         </a>
-                        <a href="https://web.facebook.com/profile.php?id=61574415336053" target="_blank" class="social-card">
+                        <a href="https://web.facebook.com/profile.php?id=61574415336053" target="_blank"
+                            class="social-card">
                             <div class="bg-indigo-100 p-4 flex flex-col items-center rounded-lg shadow-md">
                                 <i class="fab fa-facebook text-2xl text-blue-800"></i>
                                 <p class="text-lg font-bold text-gray-800">Facebook</p>
@@ -173,11 +230,13 @@
                                 <p class="text-lg font-semibold text-gray-800">Elzoz</p>
                                 <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
                                 <div class="flex justify-center gap-2">
-                                    <img src="{{ asset('files/main_images/rate/f1.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
-                                    <img src="{{ asset('files/main_images/rate/f2.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f1.jpg') }}" alt="Product 1"
+                                        class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f2.jpg') }}" alt="Product 1"
+                                        class="w-12 h-12 rounded shadow">
                                 </div>
                                 <p class="text-gray-600 mt-3 mb-3">"المنتجات بجد رووعه ما شاء الله "</p>
-                                </div>
+                            </div>
                             <!-- Testimonial 3 -->
                             <div
                                 class="testimonial-slide w-full flex-shrink-0 p-6 text-center bg-white rounded-lg shadow-lg">
@@ -186,8 +245,10 @@
                                 <p class="text-lg font-semibold text-gray-800">M.Magdy</p>
                                 <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
                                 <div class="flex justify-center gap-2">
-                                    <img src="{{ asset('files/main_images/rate/f3.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
-                                    <img src="{{ asset('files/main_images/rate/f1.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f3.jpg') }}" alt="Product 1"
+                                        class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f1.jpg') }}" alt="Product 1"
+                                        class="w-12 h-12 rounded shadow">
                                 </div>
                                 <p class="text-gray-600 mt-3">"Highly recommend Rosa Shop!"</p>
                             </div>
@@ -199,10 +260,12 @@
                                 <p class="text-lg font-semibold text-gray-800">Ahmed M. ElDardery</p>
                                 <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
                                 <div class="flex justify-center gap-2">
-                                    <img src="{{ asset('files/main_images/rate/f1.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
-                                    <img src="{{ asset('files/main_images/rate/f4.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f1.jpg') }}" alt="Product 1"
+                                        class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f4.jpg') }}" alt="Product 1"
+                                        class="w-12 h-12 rounded shadow">
                                 </div>
-                                <p class="text-gray-600 mt-3">"  الجوده عاليه والخدمه ممتازه  "</p>
+                                <p class="text-gray-600 mt-3">" الجوده عاليه والخدمه ممتازه "</p>
                             </div>
                             <!-- Testimonial 5 -->
                             <div
@@ -212,8 +275,10 @@
                                 <p class="text-lg font-semibold text-gray-800">Eprahem </p>
                                 <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
                                 <div class="flex justify-center gap-2">
-                                    <img src="{{ asset('files/main_images/rate/f3.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
-                                    <img src="{{ asset('files/main_images/rate/f4.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f3.jpg') }}" alt="Product 1"
+                                        class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f4.jpg') }}" alt="Product 1"
+                                        class="w-12 h-12 rounded shadow">
                                 </div>
                                 <p class="text-gray-600 mt-3">"الورد تحفه 🌹"</p>
                             </div>
@@ -224,7 +289,8 @@
                                 <p class="text-lg font-semibold text-gray-800">M.Sayed </p>
                                 <div class="text-yellow-500 text-lg">⭐⭐⭐⭐⭐</div>
                                 <div class="flex justify-center gap-2">
-                                    <img src="{{ asset('files/main_images/rate/f5.jpg') }}" alt="Product 1" class="w-12 h-12 rounded shadow">
+                                    <img src="{{ asset('files/main_images/rate/f5.jpg') }}" alt="Product 1"
+                                        class="w-12 h-12 rounded shadow">
                                 </div>
                                 <p class="text-gray-600 mt-3">"🤍🤍"</p>
                             </div>
@@ -259,6 +325,5 @@
             var facebookCount = {{ $number->face }};
             var ordersCount = {{ $number->orders }};
         </script>
-
     @endpush
 </x-app-layout>

@@ -63,7 +63,7 @@ class ProductController extends Controller
                     return redirect()->back()->with('error', 'Discount cannot be greater than or equal to the product price.');
                 }
     
-                $finalPrice = $price - $discount;
+                $finalPrice = $price;
     
                 // Ensure final price is not less than 1
                 if ($finalPrice < 1) {

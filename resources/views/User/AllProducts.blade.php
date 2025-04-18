@@ -32,8 +32,8 @@
             <br>
         </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <center style="display: flex; flex-direction: column; align-items: center; margin-bottom: 30px;">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg ">
+                <center class="m-4" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 30px;">
                     <h1 class="CATEGORIES">ALL PRODUCTS</h1>
 
                     <!-- Search Bar -->

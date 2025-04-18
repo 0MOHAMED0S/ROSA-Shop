@@ -29,6 +29,7 @@ Route::get('/', [RosaController::class, 'index'])->name('Home');
 Route::get('/products', [RosaController::class, 'AllProducts'])->name('AllProducts');
 Route::get('/about-rosa', [RosaController::class, 'about_rosa'])->name('about.rosa');
 Route::get('/products/{id}', [RosaController::class, 'product_details'])->name('product.details');
+
     // users Management
     Route::prefix('blogs')->name('blogs.')->group(function () {
         Route::get('/', [RosaController::class, 'blogs'])->name('index');
@@ -61,6 +62,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Favorites
     Route::get('/favorites', [RosaController::class, 'favorites'])->name('favorites');
+
+    //events
+    Route::get('/events', [RosaController::class, 'event'])->name('events.index');
+    Route::post('/events', [RosaController::class, 'tryCode'])->name('events.try');
+
 });
 
 // ========================== Admin Routes ==========================

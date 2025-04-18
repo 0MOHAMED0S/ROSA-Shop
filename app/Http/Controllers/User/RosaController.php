@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EventCodeRequest;
 use App\Http\Requests\OrderRequest;
 use App\Models\Cart;
+use App\Models\EventCode;
 use App\Models\Favorite;
 use App\Models\Number;
 use App\Models\Order;
@@ -167,7 +169,70 @@ class RosaController extends Controller
         $order = Order::with('items')->findOrFail($id);
         return view('User.orders.OrderDetails', compact('order'));
     }
+    public function event()
+    {
+        $user = Auth::user();
+    
+        // Fetch specific products by ID
+        $products = Product::whereIn('id', [2, 1])->get();
+    
+        return view('User.event', [
+            'history' => $this->getHistory($user->id),
+            'products' => $products,
+        ]);
+    }
+    public function tryCode(EventCodeRequest $request)
+{
+    $user = Auth::user();
 
+    // Count how many tries the user already has
+    $attempts = EventCode::where('user_id', $user->id)->count();
+
+    if ($attempts >= 5) {
+        return redirect()->back()->with([
+            'message' => '🚫 You have reached your 5 tries limit.',
+            'success' => false,
+            'history' => $this->getHistory($user->id),
+        ]);
+    }
+
+    // Combine digits into full code
+    $inputCode = implode('', $request->code);
+    $correctCode = '505';
+    $isCorrect = $inputCode === $correctCode;
+
+    // Store attempt in DB
+    EventCode::create([
+        'user_id' => $user->id,
+        'code' => $inputCode,
+    ]);
+
+    // Set response message
+    $message = $isCorrect
+        ? '🎉 Correct! You unlocked the safe.'
+        : '❌ Wrong code. Try again.';
+
+    // Send back to view with session data
+    return redirect()->back()->with([
+        'message' => $message,
+        'success' => $isCorrect,
+        'history' => $this->getHistory($user->id),
+    ]);
+}
+protected function getHistory($userId)
+{
+    return EventCode::where('user_id', $userId)
+        ->latest()
+        ->take(10)
+        ->get()
+        ->map(function ($attempt) {
+            return [
+                'code' => str_split($attempt->code),
+                'success' => $attempt->code === '5055',
+            ];
+        })
+        ->toArray();
+}
     public function about_rosa()
     {
         return view('User.AboutRosa');

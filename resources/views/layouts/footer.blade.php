@@ -9,7 +9,7 @@
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="{{route('Home')}}">Home</a></li>
-                    <li><a href="{{route('about.rosa')}}">About Us</a></li>
+                    <li><a href="{{route('contact.rosa')}}">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-section">

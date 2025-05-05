@@ -39,8 +39,6 @@ class RosaController extends Controller
 
         return view('User.index', compact('sections', 'products', 'number'));
     }
-
-
     public function AllProducts(Request $request)
     {
         $sections = Section::all();
@@ -157,7 +155,6 @@ class RosaController extends Controller
             return redirect()->back()->with('error', 'Failed to create order: ' . $e->getMessage());
         }
     }
-
     public function UserOrders()
     {
         $auth = Auth::id();
@@ -172,10 +169,10 @@ class RosaController extends Controller
     public function event()
     {
         $user = Auth::user();
-    
+
         // Fetch specific products by ID
         $products = Product::whereIn('id', [2, 1])->get();
-    
+
         return view('User.event', [
             'history' => $this->getHistory($user->id),
             'products' => $products,
@@ -219,24 +216,26 @@ class RosaController extends Controller
         'history' => $this->getHistory($user->id),
     ]);
 }
-protected function getHistory($userId)
-{
-    return EventCode::where('user_id', $userId)
-        ->latest()
-        ->take(10)
-        ->get()
-        ->map(function ($attempt) {
-            return [
-                'code' => str_split($attempt->code),
-                'success' => $attempt->code === '5055',
-            ];
-        })
-        ->toArray();
-}
+    protected function getHistory($userId)
+    {
+        return EventCode::where('user_id', $userId)
+            ->latest()
+            ->take(10)
+            ->get()
+            ->map(function ($attempt) {
+                return [
+                    'code' => str_split($attempt->code),
+                    'success' => $attempt->code === '5055',
+                ];
+            })
+            ->toArray();
+    }
     public function about_rosa()
     {
         return view('User.AboutRosa');
     }
+
+
 
     public function blogs()
     {
@@ -262,5 +261,5 @@ protected function getHistory($userId)
     {
         return view('User.Blogs.details.blog5');
     }
-    
+
 }

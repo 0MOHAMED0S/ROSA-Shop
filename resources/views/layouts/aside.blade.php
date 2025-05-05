@@ -28,6 +28,10 @@
                             <a href="{{route('dashboard.shipping.index')}}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span
                                     class="hide-menu"> Shipping </span></a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="{{route('dashboard.send.index')}}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span
+                                    class="hide-menu"> Send Email </span></a>
+                        </li>
                     </ul>
                 </li>
                 <li class="sidebar-item">
@@ -84,7 +88,5 @@
                 </li>
             </ul>
         </nav>
-        <!-- End Sidebar navigation -->
     </div>
-    <!-- End Sidebar scroll-->
 </aside>

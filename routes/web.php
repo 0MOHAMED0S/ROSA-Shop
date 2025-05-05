@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Rosa;
 use App\Http\Controllers\AdminRosa;
 use App\Http\Controllers\Auth\googleAuthController;
+use App\Http\Controllers\User\ContactController;
+use App\Http\Controllers\User\MessageController;
 use App\Http\Controllers\User\RosaController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,15 +32,18 @@ Route::get('/products', [RosaController::class, 'AllProducts'])->name('AllProduc
 Route::get('/about-rosa', [RosaController::class, 'about_rosa'])->name('about.rosa');
 Route::get('/products/{id}', [RosaController::class, 'product_details'])->name('product.details');
 
-    // users Management
-    Route::prefix('blogs')->name('blogs.')->group(function () {
-        Route::get('/', [RosaController::class, 'blogs'])->name('index');
-        Route::get('/1', [RosaController::class, 'blogs_flowers'])->name('flowers');
-        Route::get('/2', [RosaController::class, 'blogs_makeup'])->name('makeup');
-        Route::get('/3', [RosaController::class, 'blogs_bags'])->name('bags');
-        Route::get('/4', [RosaController::class, 'blogs_gifts'])->name('gifts');
-        Route::get('/5', [RosaController::class, 'blogs_care'])->name('care');
-    });
+Route::get('/contact-us', [ContactController::class, 'index'])->middleware('auth')->name('contact.rosa');
+Route::post('/contact-us', [ContactController::class, 'send'])->middleware('auth')->name('contact.send.rosa');
+
+// users Management
+Route::prefix('blogs')->name('blogs.')->group(function () {
+    Route::get('/', [RosaController::class, 'blogs'])->name('index');
+    Route::get('/1', [RosaController::class, 'blogs_flowers'])->name('flowers');
+    Route::get('/2', [RosaController::class, 'blogs_makeup'])->name('makeup');
+    Route::get('/3', [RosaController::class, 'blogs_bags'])->name('bags');
+    Route::get('/4', [RosaController::class, 'blogs_gifts'])->name('gifts');
+    Route::get('/5', [RosaController::class, 'blogs_care'])->name('care');
+});
 // ========================== Authentication Routes ==========================
 Route::middleware(['guest'])->group(function () {
     Route::get('/login/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('auth.google');
@@ -66,7 +71,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //events
     Route::get('/events', [RosaController::class, 'event'])->name('events.index');
     Route::post('/events', [RosaController::class, 'tryCode'])->name('events.try');
-
 });
 
 // ========================== Admin Routes ==========================
@@ -115,6 +119,13 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('dashboard')->name('das
         Route::get('/', [ShippingController::class, 'index'])->name('index');
         Route::put('/update/{id}', [ShippingController::class, 'update'])->name('update');
     });
+
+    // Send Emails
+    Route::prefix('send')->name('send.')->group(function () {
+        Route::get('/send-message', [MessageController::class, 'index'])->name('index');
+        Route::post('/send-message', [MessageController::class, 'send'])->name('message');
+    });
+
 });
 
 // require __DIR__.'/auth.php';

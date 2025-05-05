@@ -39,7 +39,6 @@
                         <thead>
                             <tr>
                                 <th>Product</th>
-                                <th>Price</th>
                                 <th>Quantity</th>
                                 <th>TOTAL</th>
                                 <th>Action</th>
@@ -56,9 +55,9 @@
                                                         alt="Product 1"></center>
                                             </div>
                                         </a>
+                                        <h3 style="color:red;" class="price">{{ $cart->product->price }} EGP</h3>
                                         <h3>{{ $cart->product->name }}</h3>
                                     </td>
-                                    <td class="price">{{ $cart->product->price }} EGP</td>
                                     <livewire:quantity :cartId="$cart->id" :key="$cart->id" />
                                     <td class="total-price"> {{ $cart->total_price }} EGP</td>
                                     <td> <a href="{{ route('cart.delete', ['id' => $cart->id]) }}"

@@ -71,6 +71,20 @@
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <section>
+                {{-- <form action="{{ route('paymentProcess') }}" method="POST">
+                    @csrf
+
+                    <input type="hidden" name="amount_cents" value="30000" /> <!-- Amount in cents (e.g. 100 EGP = 10000) -->
+                    <input type="hidden" name="currency" value="EGP" />
+
+                    <!-- Shipping Data -->
+                    <input type="text" name="shipping_data[first_name]" placeholder="First Name" required>
+                    <input type="text" name="shipping_data[last_name]" placeholder="Last Name" required>
+                    <input type="email" name="shipping_data[email]" placeholder="Email@test.com" required>
+                    <input type="text" name="shipping_data[phone_number]" placeholder="01110562097" required>
+                    <button type="submit">Pay</button>
+                </form> --}}
+
                 <div class="main-section">
                     <h1>WELCOME TO <span>ROSA</span> SHOP</h1>
                     <img src="{{ asset('files/main_images/logo/logo2.png') }}" alt="">
@@ -93,16 +107,16 @@
                     <div class="slide bg-gradient-to-r from-blue-500 to-purple-600 text-white p-8 rounded-lg shadow-lg text-center mb-10">
                         <h2 class="text-3xl font-extrabold">🚚 الشحن المجاني على جميع الطلبات! 🎉</h2>
                         <p class="text-lg mt-2">عرض لفترة محدودة! احصل على منتجاتك المفضلة مع الشحن المجاني قبل نفاد الوقت.</p>
-                    </div>                    
+                    </div>
                 </div>
-            
+
                 <!-- Navigation Dots -->
                 <div class="dots-container">
                     <span class="dot" onclick="moveSlide(1)"></span>
                     <span class="dot" onclick="moveSlide(2)"></span>
                 </div>
             </div>
-            
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <center style="margin-bottom: 50px;">
                     <h1 style="    font-weight: 1000;font-size: 37px;" class="CATEGORIES">Best Sellers ↗️</h1>

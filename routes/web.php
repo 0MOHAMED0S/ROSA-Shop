@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Rosa;
 use App\Http\Controllers\AdminRosa;
 use App\Http\Controllers\Auth\googleAuthController;
+use App\Http\Controllers\Payment\PaymentController;
+use App\Http\Controllers\Payment\PaymobController;
+use App\Http\Controllers\PaymentController as ControllersPaymentController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\MessageController;
 use App\Http\Controllers\User\RosaController;
@@ -71,7 +74,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //events
     Route::get('/events', [RosaController::class, 'event'])->name('events.index');
     Route::post('/events', [RosaController::class, 'tryCode'])->name('events.try');
+
+    Route::get('/pay', [PaymobController::class, 'pay']);
+    Route::post('/paymob/callback', [PaymobController::class, 'handleCallback']);
+
 });
+Route::post('/payment/process', [ControllersPaymentController::class, 'paymentProcess'])->name('paymentProcess');
+Route::match(['GET','POST'],'/payment/callback', [ControllersPaymentController::class, 'callBack']);
 
 // ========================== Admin Routes ==========================
 Route::middleware(['auth', 'verified', 'admin'])->prefix('dashboard')->name('dashboard.')->group(function () {

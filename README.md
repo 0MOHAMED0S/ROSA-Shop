@@ -100,7 +100,7 @@ Rosa Shop is a modern and complete e-commerce web application built with **PHP L
 
 If you have any questions or suggestions, feel free to reach out:
 
-📧 your-email@example.com  
+📧 msa0back@gmail.com  
 🔗 [LinkedIn Profile](https://www.linkedin.com/in/mohamed-sayed-back-end0)
 
 ---

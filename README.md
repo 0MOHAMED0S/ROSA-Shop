@@ -73,8 +73,12 @@ Rosa Shop is a modern and complete e-commerce web application built with **PHP L
    ```bash
    php artisan migrate
    ```
+6. **Run seeders**
+   ```bash
+   php artisan db:seed
+   ```
 
-6. **Start the development server**
+7. **Start the development server**
    ```bash
    php artisan serve
    ```

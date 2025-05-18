@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Interfaces\PaymentGatewayInterface;
+use App\Models\PaymentOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,7 +24,7 @@ class PaymobPaymentService extends BasePaymentService implements PaymentGatewayI
             'Content-Type' => 'application/json',
         ];
 
-        $this->integrations_id = [4865052, 4864845];
+        $this->integrations_id = [5091607,5091590];
     }
 
 //first generate token to access api
@@ -33,21 +34,36 @@ class PaymobPaymentService extends BasePaymentService implements PaymentGatewayI
         return $response->getData(true)['data']['token'];
     }
 
-    public function sendPayment(Request $request):array
-    {
-        $this->header['Authorization'] = 'Bearer ' . $this->generateToken();
-        //validate data before sending it
-        $data = $request->all();
-        $data['api_source'] = "INVOICE";
-        $data['integrations'] = $this->integrations_id;
+public function sendPayment(Request $request)
+{
+    $this->header['Authorization'] = 'Bearer ' . $this->generateToken();
 
-        $response = $this->buildRequest('POST', '/api/ecommerce/orders', $data);
-        //handel payment response data and return it
-        if ($response->getData(true)['success']) {
-            return ['success' => true, 'url' => $response->getData(true)['data']['url']];
-        }
-        return ['success' => false, 'url' => route('payment.failed')];
+    // Validate or process the data before sending it
+    $data = $request->all();
+    $data['api_source'] = "INVOICE";
+    $data['integrations'] = $this->integrations_id;
+
+    $response = $this->buildRequest('POST', '/api/ecommerce/orders', $data);
+    $responseData = $response->getData(true);
+
+    if ($responseData['success']) {
+        $orderId = $responseData['data']['id']; // Paymob order ID
+
+        $url = $responseData['data']['url'];    // payment URL
+
+        PaymentOrder::create([
+            'order_id' => $orderId,                         // Save Paymob order ID
+            'phone'    => $data['phone'] ?? null,
+            'address'  => $data['address'] ?? null,
+        ]);
+
+        return redirect()->to($url);
     }
+
+    return redirect()->back()->with('error', 'Payment process failed. Please try again.');
+}
+
+
 
     public function callBack(Request $request): bool
     {
@@ -59,7 +75,6 @@ class PaymobPaymentService extends BasePaymentService implements PaymentGatewayI
             return true;
         }
         return false;
-
     }
 
 

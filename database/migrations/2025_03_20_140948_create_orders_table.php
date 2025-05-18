@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('phone');
-            $table->string('address'); 
+            $table->string('address');
             $table->decimal('total_price', 10, 2);
+            $table->string('transaction_id')->nullable();
+            $table->enum('Payment_type', ['cache', 'online'])->default('cache');
+            $table->enum('Payment_status', ['paid', 'unpaid'])->default('unpaid');
             $table->enum('status', ['pending', 'in progress', 'completed', 'canceled'])->default('pending');
             $table->timestamps();
         });

@@ -15,7 +15,7 @@
                     <center style="display: block">
                         <h2 style="margin: 50px;">No Favorites Yet</h2>
                         <div><a style="color: red;border: 1px solid red;padding: 8px;border-radius: 10px;"
-                                href="{{ route('Home') }}#down">Products</a></div>
+                                href="{{ route('AllProducts') }}">Products</a></div>
                     </center>
                 </div>
             @else

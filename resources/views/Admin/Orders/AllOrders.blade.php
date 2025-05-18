@@ -81,6 +81,8 @@
                                             <th>Address</th>
                                             <th>Total Price</th>
                                             <th>Status</th>
+                                            <th>Pay Type</th>
+                                            <th>Pay Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -94,13 +96,29 @@
                                                 <td>{{ $order->address }}</td>
                                                 <td><strong class="text-danger">{{ $order->total_price }} EGP</strong></td>
                                                 <td>
-                                                    <span class="badge 
+                                                    <span class="badge
                                                         @if($order->status == 'pending') bg-warning
                                                         @elseif($order->status == 'in-progress') bg-info
                                                         @elseif($order->status == 'completed') bg-success
                                                         @elseif($order->status == 'canceled') bg-danger
                                                         @endif">
                                                         {{ ucfirst($order->status) }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge
+                                                        @if($order->Payment_type == 'cache') bg-warning
+                                                        @elseif($order->Payment_type == 'online') bg-info
+                                                        @endif">
+                                                        {{ ucfirst($order->Payment_type) }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge
+                                                        @if($order->Payment_status == 'unpaid') bg-warning
+                                                        @elseif($order->Payment_status == 'paid') bg-info
+                                                        @endif">
+                                                        {{ ucfirst($order->Payment_status) }}
                                                     </span>
                                                 </td>
                                                 <td>

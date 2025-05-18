@@ -19,12 +19,10 @@ class googleAuthController extends Controller
     {
         try {
             $googleUser = Socialite::driver('google')->user();
-    
             // Check if user already exists
             $existingUser = User::where('google_id', $googleUser->id)
                                 ->orWhere('email', $googleUser->email)
                                 ->first();
-    
             if ($existingUser) {
                 Auth::login($existingUser);
             } else {
@@ -39,21 +37,18 @@ class googleAuthController extends Controller
                 ]);
                 Auth::login($newUser);
             }
-    
             // Redirect to intended URL or fallback to home
             return redirect()->intended(route('Home'));
         } catch (\Exception $e) {
             return redirect()->route('Home')->with('error', 'Authentication Failed');
         }
     }
-    
+
 public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return redirect()->route('Home')->with('status', 'You have been logged out successfully.');
     }
 }

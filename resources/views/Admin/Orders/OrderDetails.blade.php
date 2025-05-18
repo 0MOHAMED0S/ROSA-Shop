@@ -70,13 +70,35 @@
                             <tr>
                                 <th>Status</th>
                                 <td>
-                                    <span class="badge 
+                                    <span class="badge
                                         @if($order->status == 'pending') bg-warning
                                         @elseif($order->status == 'in progress') bg-info
                                         @elseif($order->status == 'completed') bg-success
                                         @elseif($order->status == 'canceled') bg-danger
                                         @endif">
                                         {{ ucfirst($order->status) }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Payment Type</th>
+                                <td>
+                                    <span class="badge
+                                        @if($order->Payment_type == 'cache') bg-warning
+                                            @elseif($order->Payment_type == 'online') bg-info
+                                            @endif">
+                                        {{ ucfirst($order->Payment_type) }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Payment Status</th>
+                                <td>
+                                    <span class="badge
+                                        @if($order->Payment_status == 'unpaid') bg-warning
+                                        @elseif($order->Payment_status == 'paid') bg-info
+                                        @endif">
+                                        {{ ucfirst($order->Payment_status) }}
                                     </span>
                                 </td>
                             </tr>

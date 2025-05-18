@@ -52,7 +52,6 @@ class RosaController extends Controller
         $products = $query->paginate(12);
         return view('User.AllProducts', compact('sections', 'products'));
     }
-
     public function favorites()
     {
         $auth = Auth::id();
@@ -69,6 +68,10 @@ class RosaController extends Controller
         $auth = Auth::id();
         $carts = Cart::where('user_id', $auth)->get();
         return view('User.cart', compact('carts'));
+    }
+    public function Paymethod()
+    {
+        return view('User.paymentWay');
     }
 
     public function del_cart($id)
@@ -90,176 +93,75 @@ class RosaController extends Controller
         $product = Product::findOrFail($id);
         return view('User.ProductDetails', compact('product'));
     }
-    public function check_out()
-    {
-        try {
-            $auth = Auth::id();
-            $shippingCost=ShippingCost::first();
-            $cart = Cart::where('user_id', $auth)->get();
-            if ($cart->isEmpty()) {
-                return redirect()->back()->with('error', 'Your cart is empty.');
-            }
-            $totalPrice = 0;
-            foreach ($cart as $item) {
-                if ($item->quantity <= 0) {
-                    return redirect()->back()->with('error', "Product '{$item->product->name}' is out of stock.");
-                }
-                $totalPrice += $item->total_price;
-            }
-            return view('User.CheckOut', compact('totalPrice', 'cart','shippingCost'));
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong. Please try again.');
-        }
-    }
+    
+    // public function event()
+    // {
+    //     $user = Auth::user();
 
-    public function order(OrderRequest $request)
-    {
-        try {
-            DB::beginTransaction();
-            $validatedData = $request->validated();
-            $auth = Auth::id();
-            $shippingCost=ShippingCost::first();
-            $cart = Cart::where('user_id', $auth)->get();
+    //     // Fetch specific products by ID
+    //     $products = Product::whereIn('id', [2, 1])->get();
 
-            if ($cart->isEmpty()) {
-                return redirect()->back()->with('error', 'Your cart is empty. Please add items before placing an order.');
-            }
+    //     return view('User.event', [
+    //         'history' => $this->getHistory($user->id),
+    //         'products' => $products,
+    //     ]);
+    // }
+    // public function tryCode(EventCodeRequest $request)
+    // {
+    //     $user = Auth::user();
 
-            $totalPrice = $cart->sum(function ($item) {
-                return $item->total_price;
-            }) + $shippingCost->cost;
-            $order = new Order();
-            $order->user_id = $auth;
-            $order->total_price = $totalPrice;
-            $order->phone = $validatedData['phone'];
-            $order->address = $validatedData['address'];
-            $order->status = 'pending';
-            $order->save();
-            foreach ($cart as $item) {
-                if ($item->quantity <= 0) {
-                    DB::rollBack();
-                    return redirect()->back()->with('error', 'Some items in your cart are out of stock.');
-                }
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => $item->product_id,
-                    'quantity' => $item->quantity,
-                    'price' => $item->total_price
-                ]);
-                $item->delete();
-            }
-            DB::commit();
-            return redirect()->route('Home')->with('success', 'Order Created successfuly.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', 'Failed to create order: ' . $e->getMessage());
-        }
-    }
-    public function UserOrders()
-    {
-        $auth = Auth::id();
-        $orders = Order::where('user_id', $auth)->get();
-        return view('User.orders.UserOrders', compact('orders'));
-    }
-    public function show($id)
-    {
-        $order = Order::with('items')->findOrFail($id);
-        return view('User.orders.OrderDetails', compact('order'));
-    }
-    public function event()
-    {
-        $user = Auth::user();
+    //     // Count how many tries the user already has
+    //     $attempts = EventCode::where('user_id', $user->id)->count();
 
-        // Fetch specific products by ID
-        $products = Product::whereIn('id', [2, 1])->get();
+    //     if ($attempts >= 5) {
+    //         return redirect()->back()->with([
+    //             'message' => '🚫 You have reached your 5 tries limit.',
+    //             'success' => false,
+    //             'history' => $this->getHistory($user->id),
+    //         ]);
+    //     }
 
-        return view('User.event', [
-            'history' => $this->getHistory($user->id),
-            'products' => $products,
-        ]);
-    }
-    public function tryCode(EventCodeRequest $request)
-{
-    $user = Auth::user();
+    //     // Combine digits into full code
+    //     $inputCode = implode('', $request->code);
+    //     $correctCode = '505';
+    //     $isCorrect = $inputCode === $correctCode;
 
-    // Count how many tries the user already has
-    $attempts = EventCode::where('user_id', $user->id)->count();
+    //     // Store attempt in DB
+    //     EventCode::create([
+    //         'user_id' => $user->id,
+    //         'code' => $inputCode,
+    //     ]);
 
-    if ($attempts >= 5) {
-        return redirect()->back()->with([
-            'message' => '🚫 You have reached your 5 tries limit.',
-            'success' => false,
-            'history' => $this->getHistory($user->id),
-        ]);
-    }
+    //     // Set response message
+    //     $message = $isCorrect
+    //         ? '🎉 Correct! You unlocked the safe.'
+    //         : '❌ Wrong code. Try again.';
 
-    // Combine digits into full code
-    $inputCode = implode('', $request->code);
-    $correctCode = '505';
-    $isCorrect = $inputCode === $correctCode;
+    //     // Send back to view with session data
+    //     return redirect()->back()->with([
+    //         'message' => $message,
+    //         'success' => $isCorrect,
+    //         'history' => $this->getHistory($user->id),
+    //     ]);
+    // }
+    // protected function getHistory($userId)
+    // {
+    //     return EventCode::where('user_id', $userId)
+    //         ->latest()
+    //         ->take(10)
+    //         ->get()
+    //         ->map(function ($attempt) {
+    //             return [
+    //                 'code' => str_split($attempt->code),
+    //                 'success' => $attempt->code === '5055',
+    //             ];
+    //         })
+    //         ->toArray();
+    // }
 
-    // Store attempt in DB
-    EventCode::create([
-        'user_id' => $user->id,
-        'code' => $inputCode,
-    ]);
 
-    // Set response message
-    $message = $isCorrect
-        ? '🎉 Correct! You unlocked the safe.'
-        : '❌ Wrong code. Try again.';
-
-    // Send back to view with session data
-    return redirect()->back()->with([
-        'message' => $message,
-        'success' => $isCorrect,
-        'history' => $this->getHistory($user->id),
-    ]);
-}
-    protected function getHistory($userId)
-    {
-        return EventCode::where('user_id', $userId)
-            ->latest()
-            ->take(10)
-            ->get()
-            ->map(function ($attempt) {
-                return [
-                    'code' => str_split($attempt->code),
-                    'success' => $attempt->code === '5055',
-                ];
-            })
-            ->toArray();
-    }
     public function about_rosa()
     {
         return view('User.AboutRosa');
     }
-
-
-
-    public function blogs()
-    {
-        return view('User.Blogs.cards');
-    }
-    public function blogs_flowers()
-    {
-        return view('User.Blogs.details.blog1');
-    }
-    public function blogs_makeup()
-    {
-        return view('User.Blogs.details.blog2');
-    }
-    public function blogs_bags()
-    {
-        return view('User.Blogs.details.blog3');
-    }
-    public function blogs_gifts()
-    {
-        return view('User.Blogs.details.blog4');
-    }
-    public function blogs_care()
-    {
-        return view('User.Blogs.details.blog5');
-    }
-
 }

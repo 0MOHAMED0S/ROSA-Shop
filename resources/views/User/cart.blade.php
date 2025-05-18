@@ -29,7 +29,7 @@
                 <center style="display: block">
                     <h2 style="margin: 50px;">No Products </h2>
                     <div><a style="color: red;border: 1px solid red;padding: 8px;border-radius: 10px;"
-                            href="{{ route('Home') }}#down">Products</a></div>
+                            href="{{ route('AllProducts') }}">Products</a></div>
                 </center>
             </div>
         @else
@@ -70,7 +70,7 @@
                     <center>
                         <h1>TOTAL: <span id="overall-total"> 0 EGP</span></h1>
                     </center>
-                    <center><a id="submitButton" class="shop_now" href="{{ route('cart.checkout') }}" type="submit">BUY</a>
+                    <center><a id="submitButton" class="shop_now" href="{{ route('cart.Paymethod') }}" type="submit">BUY</a>
                     </center>
                 </div>
             </section>

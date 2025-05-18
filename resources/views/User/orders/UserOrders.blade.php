@@ -14,6 +14,8 @@
             <a href="{{ route('user.orders') }}" class="{{ request('status') == null ? 'active' : '' }}">All</a>
             <a href="{{ route('user.orders', ['status' => 'pending']) }}" class="{{ request('status') == 'pending' ? 'active' : '' }}">Pending</a>
             <a href="{{ route('user.orders', ['status' => 'in-progress']) }}" class="{{ request('status') == 'in-progress' ? 'active' : '' }}">In Progress</a>
+            <br>
+            <br>
             <a href="{{ route('user.orders', ['status' => 'completed']) }}" class="{{ request('status') == 'completed' ? 'active' : '' }}">Completed</a>
             <a href="{{ route('user.orders', ['status' => 'canceled']) }}" class="{{ request('status') == 'canceled' ? 'active' : '' }}">Canceled</a>
         </div>
@@ -30,7 +32,7 @@
                 <p class="no-orders">No orders yet.</p>
             @else
                 @foreach ($filteredOrders as $order)
-                    <div class="order-card {{ str_replace(' ', '-', strtolower($order->status)) }}" 
+                    <div class="order-card {{ str_replace(' ', '-', strtolower($order->status)) }}"
                         onclick="window.location='{{ route('order.details', ['id' => $order->id]) }}'">
                         <div class="order-info">
                             <h3>Order #{{ $order->id }}</h3>
@@ -39,6 +41,8 @@
                             <p><strong>Phone:</strong> +20{{ $order->phone }}</p>
                             <p><strong>Total Price:</strong> <span class="price">{{ $order->total_price }} EGP</span></p>
                             <p><strong>Status:</strong> <span class="status {{ str_replace(' ', '-', strtolower($order->status)) }}">{{ ucfirst($order->status) }}</span></p>
+                            <p><strong>Payment Type:</strong> <span class="status {{ str_replace(' ', '-', strtolower($order->status)) }}">{{ ucfirst($order->Payment_type) }}</span></p>
+                            <p><strong>Payment Status:</strong> <span class="status {{ str_replace(' ', '-', strtolower($order->status)) }}">{{ ucfirst($order->Payment_status) }}</span></p>
                         </div>
                     </div>
                 @endforeach

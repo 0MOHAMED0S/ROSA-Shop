@@ -71,19 +71,7 @@
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <section>
-                {{-- <form action="{{ route('paymentProcess') }}" method="POST">
-                    @csrf
 
-                    <input type="hidden" name="amount_cents" value="30000" /> <!-- Amount in cents (e.g. 100 EGP = 10000) -->
-                    <input type="hidden" name="currency" value="EGP" />
-
-                    <!-- Shipping Data -->
-                    <input type="text" name="shipping_data[first_name]" placeholder="First Name" required>
-                    <input type="text" name="shipping_data[last_name]" placeholder="Last Name" required>
-                    <input type="email" name="shipping_data[email]" placeholder="Email@test.com" required>
-                    <input type="text" name="shipping_data[phone_number]" placeholder="01110562097" required>
-                    <button type="submit">Pay</button>
-                </form> --}}
 
                 <div class="main-section">
                     <h1>WELCOME TO <span>ROSA</span> SHOP</h1>
@@ -99,10 +87,10 @@
                 <!-- Slider Content -->
                 <div class="slider">
                     <!-- First Offer -->
-                    <a href="{{route('events.index')}}" class="slide bg-gradient-to-r from-pink-500 to-yellow-500 text-white p-8 rounded-lg shadow-lg text-center mb-10">
+                    {{-- <a href="{{route('events.index')}}" class="slide bg-gradient-to-r from-pink-500 to-yellow-500 text-white p-8 rounded-lg shadow-lg text-center mb-10">
                         <h2 class="text-3xl font-extrabold">🎉 خمن الرقم واربح هدية مجانية!</h2>
                         <p class="text-lg mt-2">🤩 محاولات لتربح إحدى الهدايا الرائعة. جرب حظك الآن قبل نفاد الوقت!</p>
-                    </a>
+                    </a> --}}
                     <!-- Second Offer -->
                     <div class="slide bg-gradient-to-r from-blue-500 to-purple-600 text-white p-8 rounded-lg shadow-lg text-center mb-10">
                         <h2 class="text-3xl font-extrabold">🚚 الشحن المجاني على جميع الطلبات! 🎉</h2>
@@ -328,7 +316,7 @@
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
         <script src="{{ asset('JS/main.js') }}"></script>
-        <script src="{{ asset('JS/offer.js') }}"></script>
+        {{-- <script src="{{ asset('JS/offer.js') }}"></script> --}}
         <script src="{{ asset('JS/count.js') }}"></script>
         <script src="{{ asset('JS/swipper.js') }}"></script>
         <script src="{{ asset('JS/rate.js') }}"></script>

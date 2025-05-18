@@ -15,12 +15,14 @@
             <p><strong>Address:</strong> {{ $order->address }}</p>
             <p><strong>Phone:</strong> +20{{ $order->number }}</p>
             <p><strong>Total Price:</strong> <span class="price">{{ $order->total_price }} EGP</span></p>
-            <p><strong>Status:</strong> 
+            <p><strong>Status:</strong>
                 <span class="status {{ str_replace(' ', '-', strtolower($order->status)) }}">
                     {{ ucfirst($order->status) }}
                 </span>
             </p>
-
+    <p><strong>Payment Type:</strong> <span class="status {{ str_replace(' ', '-', strtolower($order->status)) }}">{{ ucfirst($order->Payment_type) }}</span></p>
+                            <p><strong>Payment Status:</strong> <span class="status {{ str_replace(' ', '-', strtolower($order->status)) }}">{{ ucfirst($order->Payment_status) }}</span></p>
+                        
             <h4>Items in this Order:</h4>
             <table class="order-items">
                 <thead>

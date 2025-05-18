@@ -12,8 +12,10 @@ use App\Http\Controllers\Auth\googleAuthController;
 use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Payment\PaymobController;
 use App\Http\Controllers\PaymentController as ControllersPaymentController;
+use App\Http\Controllers\User\BlogController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\MessageController;
+use App\Http\Controllers\User\OrderController as UserOrderController;
 use App\Http\Controllers\User\RosaController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,12 +42,12 @@ Route::post('/contact-us', [ContactController::class, 'send'])->middleware('auth
 
 // users Management
 Route::prefix('blogs')->name('blogs.')->group(function () {
-    Route::get('/', [RosaController::class, 'blogs'])->name('index');
-    Route::get('/1', [RosaController::class, 'blogs_flowers'])->name('flowers');
-    Route::get('/2', [RosaController::class, 'blogs_makeup'])->name('makeup');
-    Route::get('/3', [RosaController::class, 'blogs_bags'])->name('bags');
-    Route::get('/4', [RosaController::class, 'blogs_gifts'])->name('gifts');
-    Route::get('/5', [RosaController::class, 'blogs_care'])->name('care');
+    Route::get('/', [BlogController::class, 'blogs'])->name('index');
+    Route::get('/1', [BlogController::class, 'blogs_flowers'])->name('flowers');
+    Route::get('/2', [BlogController::class, 'blogs_makeup'])->name('makeup');
+    Route::get('/3', [BlogController::class, 'blogs_bags'])->name('bags');
+    Route::get('/4', [BlogController::class, 'blogs_gifts'])->name('gifts');
+    Route::get('/5', [BlogController::class, 'blogs_care'])->name('care');
 });
 // ========================== Authentication Routes ==========================
 Route::middleware(['guest'])->group(function () {
@@ -60,27 +62,27 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Cart & Order Management
     Route::get('/cart', [RosaController::class, 'cart'])->name('cart');
-    Route::get('/cart/check-out', [RosaController::class, 'check_out'])->name('cart.checkout');
-    Route::post('/cart/check-out', [RosaController::class, 'order'])->name('cart.order');
+    Route::get('/cart/choise', [RosaController::class, 'Paymethod'])->name('cart.Paymethod');
+    Route::get('/cart/cache/check-out', [UserOrderController::class, 'check_out'])->name('cart.checkout');
+    Route::get('/cart/online/check-out', [UserOrderController::class, 'online_check_out'])->name('cart.online_check_out');
+    Route::post('/cart/check-out', [UserOrderController::class, 'order'])->name('cart.order');
     Route::get('/cart/delete/{id}', [RosaController::class, 'del_cart'])->name('cart.delete');
 
     // Orders
-    Route::get('/user/orders', [RosaController::class, 'UserOrders'])->name('user.orders');
-    Route::get('/order/{id}', [RosaController::class, 'show'])->name('order.details');
+    Route::get('/user/orders', [UserOrderController::class, 'UserOrders'])->name('user.orders');
+    Route::get('/order/{id}', [UserOrderController::class, 'show'])->name('order.details');
 
     // Favorites
     Route::get('/favorites', [RosaController::class, 'favorites'])->name('favorites');
 
     //events
-    Route::get('/events', [RosaController::class, 'event'])->name('events.index');
-    Route::post('/events', [RosaController::class, 'tryCode'])->name('events.try');
+    // Route::get('/events', [RosaController::class, 'event'])->name('events.index');
+    // Route::post('/events', [RosaController::class, 'tryCode'])->name('events.try');
 
-    Route::get('/pay', [PaymobController::class, 'pay']);
-    Route::post('/paymob/callback', [PaymobController::class, 'handleCallback']);
-
+    //Payment
+    Route::post('/payment/process', [ControllersPaymentController::class, 'paymentProcess'])->name('paymentProcess');
+    Route::match(['GET', 'POST'], '/payment/callback', [ControllersPaymentController::class, 'callBack']);
 });
-Route::post('/payment/process', [ControllersPaymentController::class, 'paymentProcess'])->name('paymentProcess');
-Route::match(['GET','POST'],'/payment/callback', [ControllersPaymentController::class, 'callBack']);
 
 // ========================== Admin Routes ==========================
 Route::middleware(['auth', 'verified', 'admin'])->prefix('dashboard')->name('dashboard.')->group(function () {
@@ -106,6 +108,8 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('dashboard')->name('das
     // users Management
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', [DashboardController::class, 'users'])->name('index');
+        Route::post('/users/{id}/update-role', [DashboardController::class, 'updateRole'])->name('updateRole');
+
     });
 
     // Products Management
@@ -134,7 +138,6 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('dashboard')->name('das
         Route::get('/send-message', [MessageController::class, 'index'])->name('index');
         Route::post('/send-message', [MessageController::class, 'send'])->name('message');
     });
-
 });
 
 // require __DIR__.'/auth.php';

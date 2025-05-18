@@ -18,5 +18,6 @@ use App\Http\Controllers\PaymentController as ControllersPaymentController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/payment/process', [ControllersPaymentController::class, 'paymentProcess'])->name('paymentProcess');
-Route::match(['GET','POST'],'/payment/callback', [ControllersPaymentController::class, 'callBack']);
+
+// Route::post('/payment/process', [ControllersPaymentController::class, 'paymentProcess'])->name('paymentProcess');
+// Route::match(['GET','POST'],'/payment/callback', [ControllersPaymentController::class, 'callBack']);

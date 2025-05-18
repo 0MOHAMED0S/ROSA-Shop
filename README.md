@@ -84,7 +84,7 @@ Rosa Shop is a modern and complete e-commerce web application built with **PHP L
 ## 📸 Screenshots
 
 <p align="center">
-    <img src="./imgs/rosa.png" width="1000" alt="Power Gym">
+    <img src="./imgs/rosa.png" width="1000" alt="Rosa Shop">
 </p>
 
 ---
@@ -101,10 +101,6 @@ Rosa Shop is a modern and complete e-commerce web application built with **PHP L
 If you have any questions or suggestions, feel free to reach out:
 
 📧 your-email@example.com  
-🔗 [LinkedIn Profile](https://www.linkedin.com/in/your-profile)
+🔗 [LinkedIn Profile](https://www.linkedin.com/in/mohamed-sayed-back-end0)
 
 ---
-
-## 📄 License
-
-This project is open-source and available under the [MIT License](LICENSE).

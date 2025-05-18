@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ProfessionalEmail;
 
 class PaymentController extends Controller
 {
@@ -123,6 +125,13 @@ class PaymentController extends Controller
                 }
 
                 DB::commit();
+                $adminEmail = 'rosashop1234@gmail.com'; // Replace this
+                $subject = 'New Order Received';
+                $message = "A new order (#{$order->id}) has been placed by user ID: {$order->user_id}.\n\nTotal Price: {$totalPrice} EGP";
+
+                Mail::to($adminEmail)->send(
+                    new ProfessionalEmail($subject, $message)
+                );
                 return redirect()->route('Home')->with('success', 'Order created successfully.');
             } catch (\Exception $e) {
                 DB::rollBack();

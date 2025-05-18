@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Mail\ProfessionalEmail;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -11,6 +12,7 @@ use App\Models\ShippingCost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -73,6 +75,13 @@ class OrderController extends Controller
                 $item->delete();
             }
             DB::commit();
+            $adminEmail = 'rosashop1234@gmail.com'; // Replace this
+            $subject = 'New Order Received';
+            $message = "A new order (#{$order->id}) has been placed by user ID: {$auth}.\n\nTotal Price: {$totalPrice} EGP";
+
+            Mail::to($adminEmail)->send(
+                new ProfessionalEmail($subject, $message)
+            );
             return redirect()->route('Home')->with('success', 'Order Created successfuly.');
         } catch (\Exception $e) {
             DB::rollBack();
